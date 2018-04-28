@@ -2,4 +2,4 @@
 
 docker pull melissan/docker_hearts_security
 echo "gcc /home/monitor_heart.c -o /home/monitor && ./home/monitor Heart.txt /home/test; echo $?" | docker run -i -v "$(pwd)":/home melissan/docker_hearts_security /bin/bash
-echo "exit" | docker run -i melissan/docker_hearts_security
+#echo "exit" | docker run -i melissan/docker_hearts_security
