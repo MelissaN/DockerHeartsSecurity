@@ -1,5 +1,5 @@
 #!/bin/bash
 
 docker pull melissan/docker_hearts_security
-echo 'gcc /home/monitor_heart.c -o /home/monitor && ./home/monitor Heart.txt /home/test; echo $? > extract.txt" | docker run -i -v "$(pwd)":/home melissan/docker_hearts_security /bin/bash
-docker cp $(docker container ls -a | head -n 2 | tail -n 1 | rev\ cut -d " " -f1 | rev):/home/extract.txt /home/DockerHeartsSecurity/
+echo 'gcc /home/monitor_heart.c -o /home/monitor && ./home/monitor Heart.txt /home/test; echo $? > extract.txt' | docker run -i -v "$(pwd)":/home melissan/docker_hearts_security /bin/bash
+docker cp $(docker container ls -a | head -n 2 | tail -n 1 | rev | cut -d " " -f1 | rev):/home/extract.txt /home/DockerHeartsSecurity/
