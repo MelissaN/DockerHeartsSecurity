@@ -1,8 +1,5 @@
 #!/bin/bash
 
-docker pull melissan/security_game
-docker run -it -v "$(pwd)":/home melissan/security_game /bin/bash
-gcc home/monitor_heart.c -o monitor
-./monitor
-echo $? > heart_status
+docker pull melissan/docker_hearts_security
+echo "gcc home/monitor_heart.c -o home/monitor && ./home/monitor Heart.txt /home/test; echo $? > heart_status | docker run -i -v "$(pwd)":/home melissan/docker_hearts_security /bin/bash
 docker ps | grep IMAGE_NAME | gawk '{print $1}' | xargs docker stop || true
