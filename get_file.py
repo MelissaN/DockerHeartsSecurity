@@ -10,9 +10,7 @@ c = conn.cursor()
 
 c.execute('SELECT file_id from file WHERE file_name=(?)', (argv[1],))
 
-string = str(c.fetchall())
-
-print(string[2])
+print((c.fetchone())[0])
 
 conn.commit()
 
