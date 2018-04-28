@@ -1,5 +1,15 @@
 #!/usr/bin/python3
 
+def score_from_file(file_name, collector_id, dropper_id):
+    my_file = open(file_name, 'r')
+
+    heart_break = my_file.read(1)
+
+    give_points(collector_id, dropper_id, int(heart_break))
+
+    my_file.close()
+
+
 def give_points(collector_id, dropper_id, heart_break):
     import sqlite3
     from get_score import get_score
