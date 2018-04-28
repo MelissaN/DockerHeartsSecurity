@@ -38,10 +38,8 @@ int main(int ac, char **av)
 	wait(&status);
 	free(script);
 
-	if (stat(av[1], &after) < 0)
-	{
-		exit(MODIFICATION);
-	}
+	if (stat(av[1], &after) != 0)
+		return (MODIFICATION);
 
 	if (before.st_atime != after.st_atime ||
 	    before.st_mtime != after.st_mtime ||
