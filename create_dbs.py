@@ -11,7 +11,8 @@ user_id integer PRIMARY KEY AUTOINCREMENT,
 user_name text,
 pass_wd text,
 loc_id integer,
-score integer
+score integer,
+config text
 )
 ''')
 
