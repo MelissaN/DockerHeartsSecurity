@@ -1,8 +1,8 @@
 #!/bin/bash
 
 docker pull melissan/docker_hearts_security
-echo 'gcc /home/monitor_heart.c -o /home/monitor && ./home/monitor Heart.txt /home/test; echo $? > /home/extract.txt' | docker run -i -v "$(pwd)":/home melissan/docker_hearts_security /bin/bash
-docker cp $(docker container ls -a | head -n 2 | tail -n 1 | rev | cut -d " " -f1 | rev):/home/extract.txt /home/DockerHeartsSecurity/
+echo './compare.py /home/test; echo $? > /home/extract.txt' | docker run -i -v "$(pwd)":/home melissan/docker_hearts_security /bin/bash
+docker cp $(docker container ls -a | head -n 2 | tail -n 1 | rev | cut -d " " -f1 | rev):/home/extract.txt /home/dockerhearts
 
 #cd /home
 #git clone https://github.com/MelissaN/DockerHeartsSecurity.git

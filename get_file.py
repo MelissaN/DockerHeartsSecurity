@@ -1,17 +1,16 @@
 #!/usr/bin/python3
 
-from sys import argv
+def get_file(file_id):
+	import sqlite3
 
-import sqlite3
+	conn = sqlite3.connect('game.db')
 
-conn = sqlite3.connect('game.db')
+	c = conn.cursor()
 
-c = conn.cursor()
+	c.execute('SELECT * from file WHERE file_name=(?)', (file_id,))
 
-c.execute('SELECT file_id from file WHERE file_name=(?)', (argv[1],))
+	return c.fetchone()
 
-return c.fetchone()[0]
+	conn.commit()
 
-conn.commit()
-
-conn.close()
+	conn.close()

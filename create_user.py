@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-def create_user(user_name, pass_wd, config):
+def create_user(user_name, pass_wd, config='abc'):
     import sqlite3
 
     conn = sqlite3.connect('game.db')

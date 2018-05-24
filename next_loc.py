@@ -1,22 +1,13 @@
 #!/usr/bin/python3
 
-def update_user_loc(user_id, direc):
+def update_user_loc(user_id, d):
     import sqlite3
 
     conn = sqlite3.connect('game.db')
 
     c = conn.cursor()
 
-    c.execute('SELECT loc_id from user WHERE user_id=(?)', (user_id,))
-
-    current_loc = c.fetchone()[0]
-
-    new_loc = next_loc(current_loc, direc)
-
-    if new_loc == 0:
-        return;
-
-    c.execute('UPDATE user SET loc_id=(?) WHERE user_id=(?)', (new_loc, user_id))
+    c.execute('UPDATE user SET loc_id=(?) WHERE user_id=(?)', (d, user_id))
 
     conn.commit()
 

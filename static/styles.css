@@ -1,0 +1,148 @@
+body, main {
+  display: flex;
+}
+
+body {
+   flex-direction: column;
+}
+
+main {
+   flex-direction: row;
+   flex: auto;
+}
+
+article {
+   flex: 2;
+   flex-direction:row;
+}
+
+
+#canvas_container{
+   position: relative;
+   color: black;
+}
+
+#canvas_container a{
+  color: gray;
+}
+
+
+
+aside {
+   flex: 1;
+}
+
+article, aside {
+   overflow-y: auto;
+}
+
+article .responsive_container {
+   position: relative;
+   padding-bottom: 30%;
+   padding-top: 20px;
+   height: 0;
+   -webkit-overflow-scrolling: touch;
+   overflow-y:scroll;
+}
+
+article .responsive_container .mobile_happy{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   overflow-y:visible;
+}
+
+
+.themesBasic {
+  background: lightgray;
+}
+
+.themesBasic article {
+  color: black;
+}
+
+body.themesBlue {
+  background: #514B23;
+  color: #BDDBD0;
+}
+
+body.themesBlue a{
+  color: #BDDBD0;
+}
+
+article.themesBlue{
+  background: #BDDBD0;
+  color: black;
+}
+
+aside.themesBlue{
+  background: #656839
+  color: black;
+}
+
+
+body.themesRed {
+  background: #8783D1;
+  color: #E3B9BC
+}
+
+body.themesRed a{
+  color: #E3B9BC;
+}
+
+article.themesRed{
+  background: #E3B9BC;
+  color: black;
+}
+
+aside.themesRed{
+  background: #AA9ABA;
+  color: black;
+}
+
+
+
+body.themesGreen {
+  background: #2D2D2A;
+  color: #20FC8F;
+}
+
+body.themesGreen a{
+  color: #20FC8F;
+}
+
+article.themesGreen {
+  background:#20FC8F;
+  color: black;
+}
+
+aside.themesGreen{
+  background:#3F5E5A;
+  color: black;
+}
+
+canvas {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+}
+
+article a {
+   color: gray !important;
+}
+
+header {
+  overflow-y: auto;
+}
+
+.imgshow {
+  display: block;
+  width: 50%;
+  height: 50%;
+}
+
+.imghide {
+  display:none;
+}

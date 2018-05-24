@@ -1,0 +1,8 @@
+
+[gssapi]
+pykerberos
+
+[srv]
+dnspython<2.0.0,>=1.13.0
+
+[tls]

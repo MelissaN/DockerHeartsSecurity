@@ -9,7 +9,10 @@ def get_user_location(user_id):
 
     c.execute('SELECT loc_id from user WHERE user_id=(?)', (user_id,))
 
-    return c.fetchone()
+    res = c.fetchone()
+    if res == None:
+        return None
+    return res[0]
 
     conn.commit()
 

@@ -25,12 +25,8 @@ user_id integer
 ''')
 
 c.execute('''CREATE TABLE location (
-loc_id integer,
-check_pt integer,
-up integer,
-down integer,
-right integer,
-left integer
+loc_id integer PRIMARY KEY AUTOINCREMENT,
+up integer
 )
 ''')
 
