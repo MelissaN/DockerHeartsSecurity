@@ -1,0 +1,23 @@
+Things to fix:
+	code refactoring / cleaning
+	start as a human not an alien (check)
+	full screen interface
+	boarder so you can't walk off screen
+		character needs to know canvas dimentions
+			canvas probably shouldn't be resizable
+	autoscrolling
+	can see humans before they start moving
+		keep character and files as models in backend
+	
+	make it less laggy
+
+Things to experiment with:
+	Move model from frontend to backend
+		Character Data, Maps, Files
+		So front end draws characters that are in the same room
+
+Things to do:
+
+
+
+
