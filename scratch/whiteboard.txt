@@ -1,0 +1,400 @@
+6/3/18 - practice absolute positioning
+	- absolute interface window
+		- chat
+		- canvas barrier
+		- file drop zone ***
+			- read filename and filecontents on backend
+		- giant canvas auto scroll
+
+/* 0. explanation */
+
+- absolute interface window 
+	- Interface: fixed size; always becomes the size of the screen
+		- holds various window divs for important elements
+			- Canvas: element within a fixed size interface-screen div
+			- Chat: list element within a fixed size interface-chat div
+			- File: on click, a scrollable window appears at mouseX, mouseY
+- create a main div
+	- canvas will add itself in sketch.js
+- create a screen article div:
+- create a chat aside div, with messages and input subdivs
+	- could use flex, but will practice absolute positioning
+
+-------------------------------------------------------------------------------------------
+Classes
+
+All html wrapper classes contain the html object they control. 
+
+Interface Class contains the interface div.
+It creates children elements.
+	- canvas div
+	- chat div
+	- chat_msg div (scrollable)
+		- li in here
+	- chat_input div
+		- text input in here
+It contains the socket for chat.
+Inits some socket.on functions
+Sends message on enter if text exists
+
+Interface Class: will be a div
+	uid:		to drop or collect files; to create appropriate file windows
+	room:		to mark files
+	health: 	may draw health bar - perhaps you get deleted when dead
+	collection: array of file objects
+	theme:		color or image background
+	div: 		so color and theme is user-customizable
+	height: 	automatic
+	width:		automatic
+
+	Div.addEventListener(show_file_window): uses mouseX mouseY
+		show file window
+			either read the file or show empty window
+				*    - readonly
+				**   - write
+				***  - read and write
+				**** - all cases
+				read -  determine if file exists at mouse click; room global file array
+				collect*
+				drop**
+				update***
+				delete***
+				close****
+
+
+File Class: also a div. may be apart of Interface Class
+	uid:
+	text:
+	x:
+	y:
+	room:
+	div:
+	img:
+	show()
+	hide()
+
+--------------------------------------------------
+Setup Script
+
+Sketch? (will rename home.js in final version)
+
+Every element is created and defined by this script. Their children created by this script. Their classes, buttons, and attached event handlers created by this script.
+
+How to hide canvas?
+	display of parent div
+	or its own display 
+
+home.js
+	preload, setup, and draw run automatically.
+		- when? I'm unsure.
+		- assume after page load, after all js init.
+	variable declarations for granular control.
+		imperative variable initialization.
+	algorithm.
+
+Explanation:
+	We want players to choose a name and alter ego, pick a room, recieve control of one character, chat, file click.
+
+	home.js will contain the complete set of variables in the application. This includes all instances of html elements, all file, character, keyboard, and interface instances, and all function calls.
+
+	sketch.js should just load images, append canvas, and draw the room list contained in home.js.
+
+	could make a home class. that'd be pretty sexy. 
+	I feel like that's how it ought to be written.
+
+	---------------------------------------
+
+Home class variables
+	views 		= (home.main) view0(), view1(), view2()
+	width 		= (home.main) window.width 
+	height		= (home.main) window.height 
+	logindiv	= (home.main) *in view*
+	lobbydiv	= (home.main) *in view*
+	roomdiv 	= (home.main) *in view*
+
+	imgcube		= (home.main -> sketch.preload)
+	canvas 		= (home.main -> sketch.setup)
+
+	username	= (home.view0 -> home.view1)
+	alterego	= (home.view0 -> home.view1)
+	uid			= (home.view0 -> home.view1)
+
+	socket		= (home.view0 -> home.view1)
+	others		= (home.view0 -> home.view1)
+	minimap		= (home.view0 -> home.view1)
+
+	room 		= (home.view1 -> home.view2)
+	character	= (home.view1 -> home.view2)
+	keyboard	= (home.view1 -> home.view2)
+
+	poisoned	= false (home.view2)
+
+	initScreenSize()
+	extractLogin()
+	initUid()
+	connect() // room and socket
+	initCharacter() // keyboard and character
+	updateOthers()
+	deleteOthers()
+	changeView()
+
+	windowResized()
+
+	LobbyButton.addEventListener(changeView)
+	RoomButton.addEventListener(changeView)
+	LogoutButton.addEventListener(changeView)
+
+Navbar (logout button)
+
+Views
+	Login 
+	Lobby
+	Room
+
+Login
+	display only login div
+		name:
+		alterego: 
+
+Lobby
+	display only rooms div
+		div of large clickable divs
+
+Room
+	display only interface div
+		which contained the canvas and chat divs
+
+Explanation:
+
+	home object encapulates all other globals, it is also a global
+		variables must change on resize
+		allows all html elements to be globally alterable
+		carries view objects 
+			on resize, call the view objects' resize function
+
+	There are three views.
+	Each view links to the other two views through 
+		buttons
+			loginSubmit,				 logout button
+			lobby subdivs (join  room),  logout button
+			leave button  (leave room),  logout button
+
+Variables:
+	home instance variables
+
+Algorithm main:
+	main
+		home
+		views
+
+	construct home object (pass document in)
+	construct view objects (pass home in)
+		they create a div with sizes based on window stats
+		they popular it with appropriate children
+			(login boxes) (Rooms) (canvas div, chat div)
+		they control children's relative and absolute positions 
+		they append their root divs to the document
+	showView(0)
+		
+
+showView(x):
+	this.hideViews();
+	this.views[x]();
+
+hideViews():
+	for div of this.divs
+		div.style.display = none;
+
+view0: login
+	this.divs[0].style.display = flex;
+
+	shows login div
+	shows two input boxes
+	one named "username" other named "alterego"	
+
+view0submit:
+	// submit_button.addEventListener("view0Submit")
+
+	on submit, we read from the input boxes
+
+	if either of them is empty, return
+
+	if both not empty, do
+		uid
+		username
+		alterego
+		socket
+		others
+		showView(1):
+	
+view1:
+	gives you a view into each room
+		minified versions of the sprites currently in them
+		shrunk by ratio of div size / canvas size
+	cluster lobby (bonus points)
+		window views greatest cluster of people it can fit into view
+
+
+		How to get a view into the room
+	make multiple canvas's in p5.js
+		Make one canvas that you partition into buffers: Graphics
+		Draw the characters of each room on the appropriate buffer
+			resize drawn images to appropriately scale buffer/window ratio
+
+	variables
+		canvas width, height
+		lobbydiv width, height
+		ldivs 1 - 6
+			each one clickable 
+				six clickable functions, or perhaps one closure
+
+
+view2:
+	// minimap - shows other players locations on the canvas
+
+	this.divs[2].style.display = flex;
+
+
+view class (home, left, top) 
+	home
+	left //offset from parent
+	top
+	div
+	height
+	width
+	display()
+	hide()
+	init size()
+	resize()
+
+loginview class extends view
+	constructor(home)
+		appends user and alterego input boxes
+		appends submitButton
+		submitButton.addEventListener(submit)
+	submit()
+		set's homes variables (or returns)
+		must hide this.div and view1.display()
+
+lobbyview class extends view
+	constructor(home)
+
+
+----------------------------------------------------------------------
+
+Views
+
+View Functions 
+
+window.innerWidth;
+window.innerHeight;
+
+
+
+
+Room
+
+Scrolling
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_scrollleft
+
+----------------------------------------------------------------------
+Magic Functions
+
+minimap(roomID, X, Y, W, H)
+	draws mini map of size W x H on canvas at X, Y
+	uses others dictionary + others list + roomID
+
+	minimap buffer must be captured
+
+-------------------------------------------------------
+dropping and collecting files
+
+soc.emit("drop", {text: text.value,
+                  uid: homie.uid,
+                  username: homie.username,
+                  alterego: homie.alterego,
+                  x:notepad.left,
+                  y:notepad.y})
+------------------------------------------------------
+Talk Points
+
+Front end with docker 
+	- dealing with a lot of traffic
+	- making clones of your website
+	- clones of the database connection
+	- each clone handles a set of users
+		- but reloads from the same data source
+
+Socket Technology 
+
+Scaling 
+	- Socket connections 
+	- docker test feature (multiprocesses or docker service cluster)
+
+
+	---------------------------------------------------
+
+	Things To Do
+
+	setup an alpine image / container
+	on collect, run code inside container
+		try to extract heart file
+			determine if fail or successaAa
+	reset container after every collect
+--------------------------------------------------------
+Docker Py notes
+
+Manual: https://docker-py.readthedocs.io/en/stable/containers.html
+
+Example:
+>>> import docker
+>>> client = docker.from_env()
+>>> client.containers.run('alpine', 'echo hello world')
+b'hello world\n'
+
+Parameters:
+		image(str)
+			alpine 
+		command(str or list)
+			string from user
+
+		mem_limit(int) - limit mem usage
+			100m
+		remove
+			true
+		volumes(dict or list)
+			{
+				'./dockerland': 
+					{'bind': '/dockerland', 'mode': 'rw'}
+			}
+		working_dir(str)
+			/dockerland
+
+Setup:
+	Empty Volume ready on host
+	Const variables to pass into container run
+		mount hostpath and containerpath
+		hostname, entrypoint, mem_limit, working_dir
+
+Function Runtime:
+	Put heart in volume
+	run container with given string
+	test for heart file, set deadalive boolean
+	return output to socket, broadcast deadalive boolean
+
+Frontend Runtime:
+	Collect sets out a keydict
+		uid 
+		fileid
+	backend updates character
+		uid
+		healthy or dead
+	backend emits update character
+
+	front end must draw character accordingly
+		draw healthy character 1 way
+		draw unhealthy character another way
+
+	character class can have a health boolean
+	character class returns img based on boolean
+	character class has access to 2 img matricies 

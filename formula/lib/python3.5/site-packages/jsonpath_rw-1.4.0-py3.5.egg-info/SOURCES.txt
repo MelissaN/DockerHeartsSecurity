@@ -1,0 +1,15 @@
+README.rst
+setup.cfg
+setup.py
+jsonpath_rw/__init__.py
+jsonpath_rw/jsonpath.py
+jsonpath_rw/lexer.py
+jsonpath_rw/parser.py
+jsonpath_rw.egg-info/PKG-INFO
+jsonpath_rw.egg-info/SOURCES.txt
+jsonpath_rw.egg-info/dependency_links.txt
+jsonpath_rw.egg-info/entry_points.txt
+jsonpath_rw.egg-info/requires.txt
+jsonpath_rw.egg-info/top_level.txt
+jsonpath_rw/bin/__init__.py
+jsonpath_rw/bin/jsonpath.py

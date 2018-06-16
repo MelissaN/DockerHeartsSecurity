@@ -1,0 +1,12 @@
+#!/home/blockness-site/mit/formula/bin/python3.5
+# EASY-INSTALL-ENTRY-SCRIPT: 'cert-tools==2.0.9','console_scripts','create-issuer'
+__requires__ = 'cert-tools==2.0.9'
+import re
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(
+        load_entry_point('cert-tools==2.0.9', 'console_scripts', 'create-issuer')()
+    )

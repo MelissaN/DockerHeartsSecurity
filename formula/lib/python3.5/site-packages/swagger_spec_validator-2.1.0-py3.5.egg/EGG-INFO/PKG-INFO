@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: swagger-spec-validator
+Version: 2.1.0
+Summary: Validation of Swagger specifications
+Home-page: http://github.com/Yelp/swagger_spec_validator
+Author: John Billings
+Author-email: billings@yelp.com
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Requires-Dist: jsonschema
+Requires-Dist: six
+
+UNKNOWN
+
+

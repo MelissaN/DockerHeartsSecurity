@@ -1,0 +1,403 @@
+Test Functionality
+
+	Users
+		id, name, pass, location, points, drops, collects 
+	Locations
+		id
+	Files
+		id, filename, dropper_id
+	CollectedFiles
+		id, file_id, collector_id 
+
+	Create DB
+		- creates tables (users, locations, files)
+		- fills locations table, other two stay empty
+		>>> createDB
+		>>> getLocations()
+		(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+	create_user (username, password) 
+		- add to users table
+		- sets all fields to defaults
+		>>> create_user("tom", "123")
+		>>> get_users()
+		(1, 'tom', '123', 1, 0, 0, 0)
+
+	change_location (user_id, location_id)
+
+	create_file (filename, user_id, location_id)
+		- adds to file table
+		- sets user and location foreign keys
+
+	drop_file (filename, user_id, location_id)
+		create file (filename, user_id, location_id)
+		increment user_id.drops
+
+	collect_file (file_id, user_id)
+		check_if_dead(file_id, user_id)
+
+------------------------------------------------------------------------------
+Emotional Requirements
+
+Immersive 
+
+Pleasure Spikes
+	finding code
+	dropping code
+	finding other people
+
+----------------------------------------------------
+Socket.IO - https://www.youtube.com/watch?v=tHbCkikFfDE&t=1919s
+
+front-end socket connection - 15:00
+back-end socket connection fixed - 16:20 
+front-end socket emit message - 19:17
+
+front-end form submit without page reload - 19:17
+	- allows java script to react to form submit
+	- which allows socket to react to form data
+	- which allows server to compute and respond to form data
+		- without reloading the page
+
+Seems like Node.js needs to serve the webpage in order to work socket magic.
+
+phase 1: multiplayer sprites (left)
+	+ absolute chat window (right)
+	+ absolute file console (bottom)
+
+phase 2: rooms - allow people to make rooms with titles
+
+we need to drop files - upload files to server
+	   and collect files
+--------------------------------------------------------
+Flask 
+
+Flask could be used for providing initializing sqlite data
+More than likely we want database info accessible from node.
+	- update file data without refreshing page
+------------------------------
+Flask IO - https://www.youtube.com/watch?v=RdSrkkrj3l4
+
+How to send the message to a subset of sockets
+	- namespaces or rooms 
+
+frontend connect - (8:25)
+frontend user message - (13:10)
+
+eventlet or gevent for asynchronous performance (12:50)
+------------------------------
+
+FlaskIO SQLAlchemy Functionality - https://www.youtube.com/watch?v=pigpDSOBNMc
+
+------------------------------
+Javascript Module
+
+How to make classes
+How does scope work in each context. why does it work that way
+How does inheritance work
+
+How does importing and exporting work
+
+
+Each socket may have an x and y. 
+	A client speaks for its own socket 
+
+---------------------------------------------------------
+Classes 
+
+Character class 
+	- image(x, y, width, height img)
+	- draw()
+
+File class
+	- text
+	- id
+
+Map class
+	- canvas
+	- list of characters
+	- draw()
+
+Room - window / document / view port / controller
+	- recieves and sends socket info
+	- contains the socket
+	- contains the character, file, and map objects
+	- displays and hides file content
+	- displays and hides collect drop interface
+	- room id
+------------------------------------------------
+CSS
+
+.item:nth-child(3) {font-size: 80px}
+------------------------------------------------
+Flexbox - https://www.youtube.com/watch?v=G7EIAgfkhmg
+
+.parent {
+	display: flex;
+}
+
+.item {
+	width:50px
+}
+
+flex parent options
+	flex-direction - (changes x,y space distribution for justify/align)
+		row, row-reverse
+		column, column-reverse
+	flex-wrap
+		wrap, wrap-reverse
+	justify-content (deals with the x axis)
+		flex-start (default) - justifies left
+		flex-end - justifies to the right
+		center
+		space-between (equal space between all elements)
+		space-around (like space-between but some space on edges)
+	align-items (deals with the y axis)
+		flex-start (default) aligns left
+		flex-end - aligns to the bottom
+		center
+		stretch - stretches their height to fit parent
+		baseline - makes all children share a baseline
+	align-content - applies to content when they wrap
+		stretch (default) - they share space equally
+		center
+		flex-start
+		flex-end
+		space-between (requires a defined height - so no stretch)
+		space-around (requires a defined height)
+	
+flex child options
+	order (unordered elements have 0 by default)
+		<number>
+	flex-grow (control ratio of how much they'll grow)
+		<float> - multitplies size by float
+	flex-shrink (allows element to shrink if necessary)
+		<number> - divides size by number when needed
+	flex-basis
+		<px> - basis before it begins to grow or shrink
+	flex - short hand for grow shrink and basis
+		grow shrink basis
+	align-self
+		flex-end
+		stretch (height must not be defined / height auto)
+
+---------------------------------------------------------------
+
+1. get multiplayer to work with current ayana 
+2. create refactored UI
+	- log in screen
+	- lobby view
+	- room view
+
+----------------------------------------------------------------
+Socket Oriented Design
+
+When they arrive on the site, their socket is loaded into memory
+But has no associated user. (Socket, None) - sockets stored in dictionary
+(Although with the cookie header, there may actually be a user)
+
+When does server broadcast? Whats the cost?
+	- could broadcast login command to all None's every couple of seconds 
+	- could emit login command on request for data from a None (yes)
+		- my files 
+		- lobby
+			- implies socket is either in None or LoggedIn dicts
+
+commands from server
+	login
+	lobby
+	room
+	mycharacter
+
+client logic
+	redraw happens even without internet
+	player values update even without internet
+	everyone else's values update on server broadcast
+		- should make their characters walk to updated location
+		- kinda like bots walk to a mouse click
+	player sends socket update on an arbitary interval (small is better)
+
+	server message box (top right)
+	file read box (top left)
+
+data from client
+	connected
+	disconnect
+	message
+	update 
+		- send x and y values
+		- send mode
+	login
+		- send username (server checks username set)	
+
+
+
+--------------------------------------------------------
+Versions 
+
+V1 
+	No files, No database
+	Login, Lobby, Room, Instant Messenger, Ayana bots (class maybe)
+	Website class(document), Bot class, Ayana subclass (Bot)
+		navigation, controls views
+	Room class(document)
+		msg windows, map, instant messenger
+
+V2
+	Files, Database 
+	Database keeps track of file and user info
+		- file owner, room, (x, y), name, id
+		- user points, collects, drops, pw, name, id, character type
+	Files stored on server
+		- parse filenames so they don't overwrite server files
+		- learn to read jpeg and audio files
+	Character select (more bot subclasses)
+
+V3
+	Vanish list
+		make other ppls characters clickable
+		brings up options
+			vanish list - u cant see them or their files
+	Set up a proxy 
+		so that website can't be DDOS attacked
+	Get this guy's music on the site
+		- ryu and ken acapella
+--------------------------------------------------------
+Trying to learn class-based browser javascript
+--------------------------------------------------------
+V1 things to do
+	learn how to use javascript classes 
+	learn how to use flaskIO rooms
+	Make a website class 
+		connects socket on site entry
+		obeys the login command
+		sends lobby request
+		sends room request
+	Make a main.py
+		keeps sockets in a dictionary (with character data)
+		sends lobby data with room titles and ids
+			or login command
+		sends room data (to all rooms usually)
+			adds socket to room
+			other character destinations(x,y) and modes
+		on.disconnect
+	Make room class display instant messenging in msg panel
+	Make user characters
+	Make bot characters for other users
+		- all bot subclasses have a live method
+	Make room class to draw all characters on interval
+
+	classes 
+	modules
+	responsiveness
+		js reaction time is responsive
+-------------------------------------------------------
+
+website 
+
+
+# size should be set equal to the view port
+# size of the window
+
+<div id="screen">
+
+<> | <><> | <>
+
+
+</div>
+
+# remove all the elements, and replace them depending on the function call
+# make function call based on added elements (buttons)
+
+# will probably start with a room
+# everytime a socket connects, a character is created
+# let characters move around 
+# let them chat with each other 
+# 
+
+screen = document.getElementById("screen") 
+site_location = login | lobby | room
+functions = - callable through html interface 
+	main
+	request - send request to server
+	cd - change location
+		- hide one view, show another 
+
+socket attributes - feeds the views
+- views are response because they're socket based listener functions
+	- rooms
+	- users
+	- message
+
+	- characters
+		{id, username, x, y, mode, text}
+	- files
+		{id, filename, x, y, text}
+	- adminmessage
+		{color, text}
+
+view 
+	hide() - purely css
+	show() - hides other views
+	- so pass in a global list to each view, add it to that list
+	- how to make a global list in js. pointer logic?
+
+loginview
+	show()
+	hide()
+lobbyview 
+	show()
+	hide()
+roomview
+	show()
+	hide()
+--------------------------------------
+low level functions
+
+message_box()
+	- returns a message box object?
+
+
+
+--------
+
+How do I want to do speech
+	- possible instant messenger: in login
+	- standard instant messenger: in lobby 
+	- you can see their message when you're close to them: in room
+		
+	- something weird and confusing like that might actually work
+	- So the game is mostly about files not about talking
+
+	- make each speech box next to each other
+		
+
+-----------------------------------
+
+flask socket-io
+
+@socketio.on('connect', namespace='/chat')
+def test_connect():
+    emit('my response', {'data': 'Connected'})
+
+@socketio.on('disconnect', namespace='/chat')
+def test_disconnect():
+    print('Client disconnected')
+
+
+
+------
+client side socket
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+	     

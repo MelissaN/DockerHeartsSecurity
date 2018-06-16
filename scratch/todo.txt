@@ -1,0 +1,21 @@
+Things to do
+
+6/3/18 - practice absolute positioning
+	- absolute interface window
+		- chat
+		- canvas barrier
+		- file drop zone ***
+			- read filename and filecontents on backend
+		- giant canvas auto scroll
+
+6/4/18
+	- 
+
+
+-----------------------------------------------------------
+Miscellaneous Items
+
+Barriers
+	- barrier objects
+		- square obstacles have xy planes
+		- characters can't enter any object's xy plane

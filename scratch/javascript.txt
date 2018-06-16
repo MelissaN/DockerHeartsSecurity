@@ -1,0 +1,234 @@
+Javascript
+	Variable Environment, contexts, functions
+
+
+Execution Contexts
+	Global execution context
+	Function execution contexts
+
+	Creation phase
+	Execution phase
+
+	variables are trapped within its execution context (scope)
+
+Scope Chain
+	If not found in a given exe context,
+	search the outer context / search the context 1 lower on the stack
+
+Scope:
+	Where a variable is available in your code.
+	Same copy versus a new copy
+	let keyword - variable confined block environment - block scoping
+		if (a > b) {
+			let c = true;
+		}
+	- you're not allowed to use the c variable before
+	the variable definition.
+	- it's only available inside the block
+	- if used in a loop, defines a new variable each iteration
+a {
+var x
+  b {
+    use x
+  }
+}
+
+a{ 
+   var x
+   b()
+}
+
+b {
+   use x
+}
+
+would x be the global x or would it be the x in a?
+context a is 1 lower on the stack
+but the global object is the object b is attached to during global creation phase
+so a function defined within a function would use its outer scope's variables,
+  even if that function was returned and called within another context
+	
+	unless it uses the "this" keyword, in which case
+	it references the current context's object
+		if functions create contexts, how can this refer to something else
+
+b()
+b{
+ log myname
+}
+
+myname = 1
+b()
+
+in the example above, b always has access to "myname", but the time at which b is invoked is relevant to the output. because the copy operation of 1 into myname isn't executed during the creation phase. So although all b invocations always have access to myname, the value of myname will be set later, during execution phase.
+
+
+Creation phase versus Execution phase***
+	- allocates memory for function definitions and variables.
+Outer Environment References **
+	- something like a linked list, in terms of search path	
+	- scope chain
+Lexical Environment 
+	- its knowledge of where each function was physically written on js file
+	- defines the outer references using lexical environment
+
+
+exe stops after an error, kind of like python
+
+Global Execution Context
+	accessable everywhere in the code
+	creates a global object
+	creates a "this" variable
+		perhaps "this" refers to global object
+		it is the window, when ran from the browser
+
+What's window vs document?
+---------------------------------------------
+First Class Functions
+
+Everything you can do with other types,
+you can do with functions
+	assign them to variables
+	pass as parameters
+	lambda creations
+	return functions
+
+Opens horizons to completely different approaches
+to solving problems.
+
+Can attach objects to functions as attributes.
+
+
+default properties
+	name (may be anonymous)
+	code (the code you've written)
+		- the code is not the function
+		- the func is an object, with ur code as a property
+		- the code property is invokable
+			- like eval. which is when context is created
+
+How can it refer to its own properties. Might be unable to.
+Something else can use them though. A wrapper function
+
+console.log(myfunction) - shows the textual code of the function
+
+Function Statements and Function Expressions
+	Statement
+		Code that does work
+		if statements
+		defined as stmt | expr
+	Expression 
+		Unit of code that evaluates a value
+		=, +, -, *, /
+	Function Statements
+		function greet(){console.log('howdy')}
+		gets hoisted during creation phase of exe context
+		does not evaluate to a value
+	Function Expression
+		- var anon = function() {console.log('hi')}
+		- expr does not get hoisted
+		- is considered a value
+		- could be named, uselessly since variable has it
+		- to invoke, follow variable name with ()
+		- log(function(){console.log('ji')})
+			- passed in a function on the fly
+
+function[name](){}
+
+-----------------------------------
+learn about prototypes and objects
+-----------------------------------
+Object: set of name value pairs
+
+{
+	greeting: "hi"
+}
+
+{name: value} name doesnt need quotes, but I think must be a string
+
+Name Value Pair:
+	A name which maps to a value
+	May only have one value per context
+	value may be another set of name value pairs
+
+How to make a new objects
+	- class notation?
+	- new Object(), {}
+	- what does "this" refer to?
+		- refers to object that initially made the call
+		- searches prototype chain if not found
+	
+------------------------------------
+Prototypes
+
+Object Oriented Javascript
+
+Classical versus Prototypal Inheritance
+
+Inheritance:
+	One obj gets access to the properties
+	and methods of another object
+
+Classical Inheritance:
+	Way of sharing methods and properties of objects
+	can get entangled at large levels of class trees
+
+Prototypal Inheritance:
+	How can it be different than classical?
+	Reliant on an object's instantiation?
+
+Prototype
+	All objects have a prototype property
+	It is a reference to another object
+	dot notation looks for properties down the prototype chain
+	How to use the prototype chain flexibly?
+		- various objects can share a prototype object
+	How to set an object's prototype in a performance safe way?
+	Seems like prototypes should just hold "this" methods and constants
+	Object.create(proto) -> creates empty object, setting __proto__ to proto
+
+dont set prototype with .__proto__ = obj; # performance issues
+
+-------------------------------------------
+Single Threaded Synchronous Execution
+
+Single Threaded
+	one command is being executed at a time
+	- under the hood of the browser, maybe not
+
+Synchronous Execution
+	commands are executed in order
+--------------------------------------------
+Function Features
+
+Self executing anonymous function, or
+Immediately invoked function expressions (IIFE):
+(
+	function() {console.log('hi')}
+)();
+
+Does outer parenthesis create a new execution context?
+
+arrow function () => {}
+--------------------------------------------
+Window vs Document
+
+Window
+	Document
+
+window.prop
+window.document.prop
+window.frames[i].prop
+--------------------------------------------
+CSS
+
+Look into jade and sass - https://www.youtube.com/watch?annotation_id=annotation_3650959167&feature=iv&src_vid=G7EIAgfkhmg&v=H1lREysgdgc
+---------------------------------------------
+pass by value vs pass by reference
+
+primatives passed by value 
+objects passed by reference
+
+primatives
+	undefined, null, boolean, string, and number
+
