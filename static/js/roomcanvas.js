@@ -19,7 +19,7 @@
 	*/
 
 class Roomcanvas {
-	constructor(character, canvasdiv){
+	constructor(character){
 		this.character = character
 		this.canvasdiv = document.getElementById("canvasdiv")
 		this.canvasdiv.style.width = window.innerWidth

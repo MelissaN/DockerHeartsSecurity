@@ -47,5 +47,6 @@ function draw(){
 		let y = player.y;
 		image(img, x, y);
 		home.deleteOther(player);
+		room.roomcanvas.scroll()
 	}
 }

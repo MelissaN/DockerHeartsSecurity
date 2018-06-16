@@ -6,6 +6,7 @@ class Room extends View {
 		this.character 	= undefined
 		this.keyboard  	= undefined
 		this.room 		= 0 //lobby
+		this.roomcanvas = undefined
 	}
 
 	// might need an exit() function -  to send delete signal
@@ -14,6 +15,7 @@ class Room extends View {
 		// or try to make them more singular
 	reentry(){
 		this.character 	= new Character(this.home)
+		this.roomcanvas = new RoomCanvas(this.character)
 		this.keyboard 	= new Keyboard(this.character)
 		this.notepad 	= new Notepad(this.character)
 		this.home.character = this.character
