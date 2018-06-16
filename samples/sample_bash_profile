@@ -1,2 +1,0 @@
-#this will make it hard for malicious files to rm your heart!
-alias rm="ls"

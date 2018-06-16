@@ -1,8 +1,0 @@
-pbr>=0.11
-six>=1.9
-
-[docs]
-sphinx
-
-[test]
-unittest2>=1.1.0

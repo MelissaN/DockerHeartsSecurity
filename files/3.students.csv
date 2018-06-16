@@ -1,9 +1,0 @@
-name,pubkey,identity
-
-Jane Smith,ecdsa-koblitz-pubkey:1AAGG6jirbu9XwikFpkHokbbiYpjVtFe1G,jsmith@landroth.org
-
-Julia Roberts,ecdsa-koblitz-pubkey:18AaFyeWmsasbSh2GsjGTtrNHqiJgsN6nB,jroberts@greenborough.org
-
-Miranda Evans,ecdsa-koblitz-pubkey:13cS9kUv7xSvqb8ryLyu6TcNpiLddYPz3C,324@holbertonschool.com
-
-Victor Nguyen,ecdsa-koblitz-pubkey:1Fhp7yRjG74VZf49p4j3JcFawAPeUEJW5V,victor.nguyen@holbertonschool.com
