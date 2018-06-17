@@ -17,6 +17,7 @@ class Notepad {
 		this.width = 150
 		this.left = 0
 		this.top = 0
+		this.lastactive = "BODY"
 
 		this.doc = document
 		this.div = document.createElement("div")
@@ -71,9 +72,10 @@ class Notepad {
 		let collect	= this.collectbtn
 		let homie	= this.home
 		return function(){
+			let active = document.activeElement.tagName
+			let lastactive = notepad.lastactive
+			console.log(lastactive)
 			if (notepad.open){
-				let active = document.activeElement.tagName
-				console.log(active)
 				if (active !== "TEXTAREA"){
 					notepad.open = false
 					pad.style.display = "none"
@@ -82,6 +84,10 @@ class Notepad {
 				}
 			}
 			else {
+				if (lastactive !== "BODY"){
+					notepad.lastactive = active
+					return
+				}
 				drop.style.display = "none"
 				edit.style.display = "none"
 				collect.style.display = "none"
@@ -108,7 +114,8 @@ class Notepad {
 					drop.style.display = "inline-block"
 				}
 			}
-
+			notepad.lastactive = active
+			console.log(notepad.lastactive)
 		}
 		
 

@@ -18,17 +18,19 @@
 
 	*/
 
-class Roomcanvas {
+class RoomCanvas {
 	constructor(character){
 		this.character = character
+		this.home = this.character.home
+		this.navbar = this.home.navbar
 		this.canvasdiv = document.getElementById("canvasdiv")
 		this.canvasdiv.style.width = window.innerWidth
-		this.canvasdiv.style.height = window.innerHeight
+		this.canvasdiv.style.height = window.innerHeight - this.navbar.height
 	}
 
 
 	scroll(){
 		this.canvasdiv.scrollLeft = this.character.x - Math.floor(window.innerWidth / 2)
-		this.canvasdiv.scrollRight = this.character.y - Math.floor(window.innerHeight / 2)
+		this.canvasdiv.scrollTop = this.character.y - Math.floor((window.innerHeight - this.navbar.height) / 2)
 	}
 }

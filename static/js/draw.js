@@ -21,7 +21,7 @@ function preload() {
 }
 
 function setup(){
-	let canvas = createCanvas(500, 500)
+	let canvas = createCanvas(3000, 3000)
 	canvas.parent('canvasdiv')
 	//uinterface.canvasdiv.appendChild(canvas)
 	background(bg)

@@ -19,14 +19,30 @@ class Login extends View {
 		this.alteregoBox.appendChild(this.alterInput)
 		this.div.appendChild(this.alteregoBox)
 
+		this.genderboy = document.createElement("input")
+		this.gendergirl = document.createElement("input")
+		this.genderboy.setAttribute('type', 'checkbox')
+		this.gendergirl. setAttribute('type', 'checkbox')
+		this.div.appendChild(this.genderboy)
+		this.div.appendChild(document.createElement('br'))
+		this.div.appendChild(this.gendergirl)
+		this.div.appendChild(document.createElement('br'))
+
 		this.submitButton = document.createElement("button")
 		this.submitText	 = document.createTextNode("Enter")
 		this.submitButton.appendChild(this.submitText)
 		this.div.appendChild(this.submitButton)
 		this.submitButton.addEventListener("click", this.submit())
+
+                this.instructions = document.createElement("p")
+                this.instructions.innerHTML = "a, w, s, d, to move"
+                this.div.appendChild(this.instructions)
+
 	}
 
 	submit() {
+		let genderboy = this.genderboy
+		let gendergirl = this.gendergirl
 		let username = this.userInput
 		let alterego = this.alterInput
 		let homie = this.home
@@ -34,10 +50,17 @@ class Login extends View {
 		return function() {
 			if (username.value === "" || alterego.value === "")
 				return
+			if (!genderboy.checked && !gendergirl.checked)
+				return
 			else {
 				homie.uid = username.value + '/' + Date.now()
 				homie.username = username.value
 				homie.alterego = alterego.value
+				if (genderboy.checked && gendergirl.checked)
+					homie.gender = 'alien'
+				if (genderboy.checked)
+					homie.gender = 'boy'
+				else homie.gender = 'girl'
 				homie.connectSocket();
 				homie.views[2].display()
 			}

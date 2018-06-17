@@ -3,6 +3,7 @@ class Home {
 		this.uid 	= undefined;
 		this.username	= undefined;
 		this.alterego	= undefined;
+		this.navbar 	= undefined;
 		this.views  	= [];
 		this.others 	= {};
 		this.othersList = [];
@@ -23,6 +24,7 @@ class Home {
 
 	disconnectSocket(){
 		this.socket.disconnect()
+		this.uid = undefined
 	}
 
 	updateOthers(){
