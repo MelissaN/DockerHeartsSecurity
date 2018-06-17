@@ -2,7 +2,12 @@
 //home
 
 const R = 0, L = 1, U = 2, D = 3; 
-let char = 'Zack', dir = 'static/lockusprites/';
+let char = 'Zack'
+if (home.gender === 'girl')
+	char = 'Zoe'
+if (home.gender === 'alien')
+	char = 'alien'
+let dir = 'static/lockusprites/';
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
 
@@ -13,10 +18,10 @@ function preload() {
 		home.directions[U][i] = loadImage(dir + char + poses[U] + i + '.png')
 		home.directions[D][i] = loadImage(dir + char + poses[D] + i + '.png')
 
-		home.directionsalt[R][i] = loadImage(dir + 'alien' + poses[R] + i + '.png')
-		home.directionsalt[L][i] = loadImage(dir + 'alien' + poses[L] + i + '.png')
-		home.directionsalt[U][i] = loadImage(dir + 'alien' + poses[U] + i + '.png')
-		home.directionsalt[D][i] = loadImage(dir + 'alien' + poses[D] + i + '.png')
+		home.directionsalt[R][i] = loadImage(dir + 'snake' + poses[R] + i + '.png')
+		home.directionsalt[L][i] = loadImage(dir + 'snake' + poses[L] + i + '.png')
+		home.directionsalt[U][i] = loadImage(dir + 'snake' + poses[U] + i + '.png')
+		home.directionsalt[D][i] = loadImage(dir + 'snake' + poses[D] + i + '.png')
 	}
 }
 
