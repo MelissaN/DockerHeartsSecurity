@@ -8,7 +8,7 @@ def run(cmd):
 	img = 'alpine'
 	mem = '100m'
 	remove = True
-	volumes = {'/home/DockerHeartsSkeleton/dockerland':
+	volumes = {'/home/DockerHeartsSecurity/dockerland':
 			{'bind': '/dockerland', 'mode': 'rw'}}
 	work = '/dockerland'
 	kwargs = {'mem_limit': mem, 'remove': remove, 'volumes': volumes,

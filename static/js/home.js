@@ -4,6 +4,7 @@ class Home {
 		this.username	= undefined;
 		this.alterego	= undefined;
 		this.navbar 	= undefined;
+		this.gender	= undefined;
 		this.views  	= [];
 		this.others 	= {};
 		this.othersList = [];
@@ -12,6 +13,8 @@ class Home {
 		this.socket 		= {};
 		this.socket.disconnect 	= () => {};
 		this.directions 	= [[], [], [], []];
+		this.dirgirl		= [[], [], [], []];
+		this.diralien		= [[], [], [], []];
 		this.directionsalt	= [[], [], [], []];
 		this.update 		= this.updateOthers();
 	}
@@ -44,6 +47,7 @@ class Home {
 			zeno.heart = other.heart
 			if (other.uid !== homie.uid)
 			{
+				zeno.gender = other.gender;
 				zeno.direction = other.direction;
 				zeno.walking = other.isWalking;
 				zeno.xx = other.xx;

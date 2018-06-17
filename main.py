@@ -33,6 +33,7 @@ def drop(filedict):
 def collect(keydict):
 	res = dock.run(files[keydict['filekey']]['text'])
 	characters[keydict['uid']]['heart'] = res['heartexists']
+	print(files[keydict['filekey']]['text'])
 	print(characters[keydict['uid']]['heart'])
 	emit("update", characters[keydict['uid']], broadcast=True)
 	

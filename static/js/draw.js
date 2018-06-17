@@ -3,10 +3,8 @@
 
 const R = 0, L = 1, U = 2, D = 3; 
 let char = 'Zack'
-if (home.gender === 'girl')
-	char = 'Zoe'
-if (home.gender === 'alien')
-	char = 'alien'
+let chargirl = 'Zoe'
+let charalien = 'alien'
 let dir = 'static/lockusprites/';
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
@@ -17,6 +15,16 @@ function preload() {
 		home.directions[L][i] = loadImage(dir + char + poses[L] + i + '.png')
 		home.directions[U][i] = loadImage(dir + char + poses[U] + i + '.png')
 		home.directions[D][i] = loadImage(dir + char + poses[D] + i + '.png')
+
+		home.dirgirl[R][i] = loadImage(dir + chargirl + poses[R] + i + '.png')
+		home.dirgirl[L][i] = loadImage(dir + chargirl + poses[L] + i + '.png')
+		home.dirgirl[U][i] = loadImage(dir + chargirl + poses[U] + i + '.png')
+		home.dirgirl[D][i] = loadImage(dir + chargirl + poses[D] + i + '.png')
+			
+		home.diralien[R][i] = loadImage(dir + charalien + poses[R] + i + '.png')
+		home.diralien[L][i] = loadImage(dir + charalien + poses[L] + i + '.png')
+		home.diralien[U][i] = loadImage(dir + charalien + poses[U] + i + '.png')
+		home.diralien[D][i] = loadImage(dir + charalien + poses[D] + i + '.png')
 
 		home.directionsalt[R][i] = loadImage(dir + 'snake' + poses[R] + i + '.png')
 		home.directionsalt[L][i] = loadImage(dir + 'snake' + poses[L] + i + '.png')

@@ -20,12 +20,20 @@ class Login extends View {
 		this.div.appendChild(this.alteregoBox)
 
 		this.genderboy = document.createElement("input")
+		this.boyp	= document.createElement('p')
 		this.gendergirl = document.createElement("input")
+		this.girlp	= document.createElement('p')
 		this.genderboy.setAttribute('type', 'checkbox')
-		this.gendergirl. setAttribute('type', 'checkbox')
-		this.div.appendChild(this.genderboy)
+		this.gendergirl.setAttribute('type', 'checkbox')
+
+		this.boyp.appendChild(document.createTextNode("Boy: "))
+		this.boyp.appendChild(this.genderboy)
+		this.div.appendChild(this.boyp)
 		this.div.appendChild(document.createElement('br'))
-		this.div.appendChild(this.gendergirl)
+
+		this.girlp.appendChild(document.createTextNode("Girl:"))
+		this.girlp.appendChild(this.gendergirl)
+		this.div.appendChild(this.girlp)
 		this.div.appendChild(document.createElement('br'))
 
 		this.submitButton = document.createElement("button")
@@ -58,7 +66,7 @@ class Login extends View {
 				homie.alterego = alterego.value
 				if (genderboy.checked && gendergirl.checked)
 					homie.gender = 'alien'
-				if (genderboy.checked)
+				else if (genderboy.checked)
 					homie.gender = 'boy'
 				else homie.gender = 'girl'
 				homie.connectSocket();

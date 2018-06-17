@@ -27,7 +27,10 @@ Class needs to be controllable from the keyboard and from code
 class Character {
 	constructor(h) {
 		this.home = h;
+		this.gender = this.home.gender
 		this.img_mtrx = h.directions;
+		this.img_girl = h.dirgirl;
+		this.img_alien = h.diralien;
 		this.img_mtrxalt = h.directionsalt;
 		this.heart = true;
 		this.x = 0;
@@ -63,8 +66,14 @@ class Character {
 	}
 
 	get image(){
+		let gen = this.gender
 		if (this.heart)
-			return this.img_mtrx[this.cdir][this.cframe];
+			if (gen == 'boy')
+				return this.img_mtrx[this.cdir][this.cframe];
+			else if (gen == 'girl')
+				return this.img_girl[this.cdir][this.cframe];
+			else
+				return this.img_alien[this.cdir][this.cframe];
 		else
 			return this.img_mtrxalt[this.cdir][this.cframe];
 	}

@@ -73,7 +73,6 @@ class Notepad {
 		return function(){
 			if (notepad.open){
 				let active = document.activeElement.tagName
-				console.log(active)
 				if (active !== "TEXTAREA"){
 					notepad.open = false
 					pad.style.display = "none"
