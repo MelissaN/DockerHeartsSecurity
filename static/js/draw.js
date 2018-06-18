@@ -1,21 +1,36 @@
+// functions
+function findPoint(pixelmap, i, j){
+		// finds the index of position x, y on the pixel map
+		return {x: j * pixelmap.ratiox, y: i * pixelmap.ratioy}
+	}
+
 
 //home
+let dir = 'static/lockusprites/';
+
+let mapkeydemo = {t: undefined, h: undefined, w: undefined}
 
 const R = 0, L = 1, U = 2, D = 3; 
 let char = 'Zack'
 let chargirl = 'Zoe'
 let charalien = 'alien'
-let dir = 'static/lockusprites/';
+
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
-let pixelmapdemo = {
-	map: [
+let cw = 3000
+let ch = 3000
+let m = 
+	[
 		['t', 't', 't', 't', 't'],
 		['t', 'h', 't', 't', 't'],
 		['s', 'h', 't', 't', 't']
-	],
-	canvaswidth: 3000,
-	canvasheight: 3000
+	]
+let pixelmapdemo = {
+	map: m,
+	canvaswidth: cw,
+	canvasheight: ch,
+	ratiox: cw / m.length,
+	ratioy: cy / m[0].length
 }
 
 function preload() {
@@ -40,6 +55,11 @@ function preload() {
 		home.directionsalt[U][i] = loadImage(dir + 'snake' + poses[U] + i + '.png')
 		home.directionsalt[D][i] = loadImage(dir + 'snake' + poses[D] + i + '.png')
 	}
+
+	mapkeydemo['t'] = loadImage(dir + 'grasstile.png')
+	mapkeydemo['h'] = loadImage(dir + 'treetile.png')
+	mapkeydemo['w'] = loadImage(dir + 'watertile.png')
+	mapkeydemo['s'] = loadImage(dir + 'grasstile.png')
 }
 
 function setup(){
@@ -57,6 +77,18 @@ function draw(){
 	background(bg);
 	stroke(0);
 	fill(150);
+	let pixelmap = home.pixelmap
+	let map 	 = pixelmap.map
+
+	for (let row = 0; row < map.length; row++)
+		for (let col = 0; col < map[row].length; col++)
+		{
+			let tilepoint = findPoint(pixelmap, row, col)
+			let imgheight = pixelmap.canvasheight / map.length
+			let imgwidth = pixelmap.canvaswidth / map[row].length
+			image(mapkeydemo[map[row][col]], tilepoint['x'], tilepoint['y'], imgwidth, imgheight)
+		}
+
 	for (let [key, value] of Object.entries(home.files)){
 		if(home.selectedfile !== undefined && home.selectedfile === value)
 			stroke(255)
