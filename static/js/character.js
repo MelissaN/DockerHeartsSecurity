@@ -146,7 +146,7 @@ class Character {
 		
 		let tile = this.map[row][col]
 
-		if (tile === 'h')
+		if (tile === 'h' || tile === 'sp')
 		{
 			console.log('hazard guard')
 			console.log('tile: '+tile)

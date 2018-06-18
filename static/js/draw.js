@@ -26,8 +26,6 @@ function drawhazards(pixelmap, mapkey){
 				let imgheight = pixelmap.canvasheight / map.length
 				let x = imgwidth * col
 				let y = imgheight * row
-				console.log("imgwidth: "+imgwidth+"; imgheight: "
-						+imgheight+"; x: "+x+"; y: "+y)
 				image(mapkey[tile], x, y, imgwidth, imgheight)
 			}
 		}
@@ -45,12 +43,12 @@ let charalien = 'alien'
 
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
-let cw = 300
-let ch = 300
+let cw = 1300
+let ch = 1300
 let m = 
 	[
-		['t', 't', 't', 't', 'sp'],
 		['t', 't', 't', 't', 't'],
+		['t', 't', 't', 'sp', 't'],
 		['s', 'h', 't', 't', 't']
 	]
 let pixelmapdemo = {
