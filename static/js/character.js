@@ -206,10 +206,10 @@ class Character {
 				buffy = this.image.height
 				break;
 		}
-		let newx = Math.floor(newxx);
-		let newy = Math.floor(newyy);
+		let newx = Math.floor(newxx) + buffx;
+		let newy = Math.floor(newyy) + buffy;
 		let idx = this.findindex(newx, newy)
-		let canpass = this.testedges(newx + buffx, newy + buffy, idx['row'], idx['col'])
+		let canpass = this.testedges(newx, newy, idx['row'], idx['col'])
 		if (canpass)
 		{
 			this.xx = newxx
