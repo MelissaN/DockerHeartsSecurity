@@ -48,13 +48,14 @@ let charalien = 'alien'
 
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
-let cw = 1300
-let ch = 1300
+let cw = 500
+let ch = 500
 let m = 
 	[
-		['t', 'w', 'w', 't', 't'],
-		['t', 't', 't', 'sp', 't'],
-		['s', 'h', 't', 't', 't']
+		['h', 'h', 'h', 'h', 'h'],
+		['h', 't', 't', 't', 'h'],
+		['h', 's', 't', 'sp', 'h'],
+		['h', 'h', 'h', 'h', 'h']
 	]
 let pixelmapdemo = {
 	map: m,
