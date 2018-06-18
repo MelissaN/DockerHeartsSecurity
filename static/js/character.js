@@ -67,13 +67,17 @@ class Character {
 		this.img_mtrxalt = h.directionsalt;
 		this.heart = true;
 		this.spawn = this.spawnpoint(this.map)
-		this.x = this.spawn['x'] * this.ratiox;
-		this.y = this.spawn['y'] * this.ratioy;
-		this.xx = 0;
-		this.yy = 0;
+
+		this.xx = this.spawn['x'] * this.ratiox;
+		this.yy = this.spawn['y'] * this.ratioy;
+
+		this.x = this.xx;
+		this.y = this.yy;
+
 		this.cdir = 3;
 		this.cframe = 0;
 		this.cc = 0;
+		this.cdelay = 4;
 		this.walkSpeed = 2.4;
 		this.isWalking = 0;
 
@@ -126,20 +130,32 @@ class Character {
 	}
 
 	testedges(x, y, row, col){
-		let tile = this.pixelmap.map[row][col]
-
+		let tile = this.map[row][col]
 		if (
-				x < 0 || y < 0 || 
-				x + this.imgwidth > this.pixelmap['canvaswidth'] ||
-				y + this.imgheight > this.pixelmap['canvasheight']
+				(x < 0) || (y < 0) || 
+				(x + this.imgwidth > this.pixelmap['canvaswidth']) ||
+				(y + this.imgheight > this.pixelmap['canvasheight'])
 		   )
+		{
+			console.log('bounds guard')
+			console.log('tile: '+ tile)
 			return false
+		}
+		
 
 		if (tile === 'h')
+		{
+			console.log('hazard guard')
+			console.log('tile: '+tile)
 			return false
+		}
 
 		if (tile === 'w' && this.heart)
+		{
+			console.log('water guard')
+			console.log('tile: '+tile)
 			return false
+		}
 		return true
 	}
 
@@ -151,7 +167,6 @@ class Character {
 				if (map[row][col] == 's')
 					spawnpoints.push({y: row, x: col})
 
-		console.log(spawnpoints)
 		return spawnpoints[Math.floor(random(0, spawnpoints.length))]
 	}
 
@@ -164,7 +179,7 @@ class Character {
 		this.cc += 1;
 		this.cframe = 0;
 		if (w === 1){
-			this.cframe = seq[Math.floor(this.cc / this.slow) % seq.length];
+			this.cframe = seq[Math.floor(this.cc / this.cdelay) % seq.length];
 		}
 		let sp = this.walkSpeed;
 		let newxx = this.xx
@@ -187,8 +202,11 @@ class Character {
 		let newx = Math.floor(newxx);
 		let newy = Math.floor(newyy);
 		let idx = this.findindex(newx, newy)
-		if (this.testedges(newx, newy, idx['row'], idx['col']))
+		let canpass = this.testedges(newx, newy, idx['row'], idx['col'])
+		if (canpass)
 		{
+			this.xx = newxx
+			this.yy = newyy
 			this.x = Math.floor(this.xx);
 			this.y = Math.floor(this.yy);
 		}
