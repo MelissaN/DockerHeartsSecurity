@@ -54,8 +54,8 @@ class Character {
 		this.home = h;
 		this.pixelmap = this.home.pixelmap
 		this.map	= this.pixelmap.map
-		this.height	= 10
-		this.width	= 5
+		this.imgheight	= 10
+		this.imgwidth	= 5
 
 		this.ratioy	= this.pixelmap.canvasheight / this.map.length
 		this.ratiox	= this.pixelmap.canvaswidth / this.map[0].length
@@ -130,8 +130,8 @@ class Character {
 
 		if (
 				x < 0 || y < 0 || 
-				x + this.width > this.pixelmap['canvaswidth'] ||
-				y + this.height > this.pixelmap['canvasheight']
+				x + this.imgwidth > this.pixelmap['canvaswidth'] ||
+				y + this.imgheight > this.pixelmap['canvasheight']
 		   )
 			return false
 
