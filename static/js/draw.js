@@ -8,12 +8,16 @@ function drawland(pixelmap, mapkey){
 	let map = pixelmap.map
 	for(let row = 0; row < pixelmap.map.length; row++)
 		for(let col = 0; col < pixelmap.map[row].length; col++){
+			let tile = map[row][col]
 			let tilepoint = findpoint(pixelmap, row, col)
 			let x = tilepoint['x']
 			let y = tilepoint['y']
 			image(mapkey['t'], x, y)
+			if (tile === 'w')
+				image(mapkey['w'], x, y)
 		}
 }
+
 
 function drawhazards(pixelmap, mapkey){
 	let map = pixelmap.map
