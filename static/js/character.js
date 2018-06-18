@@ -54,6 +54,8 @@ class Character {
 		this.home = h;
 		this.pixelmap = this.home.pixelmap
 		this.map	= this.pixelmap.map
+		this.height	= 10
+		this.width	= 5
 
 		this.ratioy	= this.pixelmap.canvasheight / this.map.length
 		this.ratiox	= this.pixelmap.canvaswidth / this.map[0].length
@@ -125,8 +127,17 @@ class Character {
 
 	testedges(x, y, row, col){
 		let tile = this.pixelmap.map[row][col]
+
+		if (
+				x < 0 || y < 0 || 
+				x + this.width > this.pixelmap['canvaswidth'] ||
+				y + this.height > this.pixelmap['canvasheight']
+		   )
+			return false
+
 		if (tile === 'h')
 			return false
+
 		if (tile === 'w' && this.heart)
 			return false
 		return true

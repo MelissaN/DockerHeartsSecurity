@@ -46,6 +46,7 @@ function setup(){
 	let canvaswidth = pixelmapdemo.canvaswidth
 	let canvasheight = pixelmapdemo.canvasheight
 	home.pixelmap = pixelmapdemo
+	console.log(home.pixelmap)
 	let canvas = createCanvas(canvaswidth, canvasheight)
 	canvas.parent('canvasdiv')
 	//uinterface.canvasdiv.appendChild(canvas)
