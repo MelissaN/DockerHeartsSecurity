@@ -24,7 +24,7 @@ function drawhazards(pixelmap, mapkey){
 	for(let row = 0; row < pixelmap.map.length; row++)
 		for(let col = 0; col < pixelmap.map[row].length; col++){
 			let tile = map[row][col]
-			if (tile !== 't' && tile !== 's'){
+			if (tile === 'h' || tile === 'sp'){
 				let tilepoint = findpoint(pixelmap, row, col)
 				let imgwidth = pixelmap.canvaswidth / map[row].length
 				let imgheight = pixelmap.canvasheight / map.length
