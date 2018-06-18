@@ -123,25 +123,28 @@ class Character {
 		let ratioy	 = height / pixelmap.length
 
 		let i = Math.floor(y / ratioy)
+		if (i < 0)
+			return {row: -1, col: -1}
 		let ratiox	 = width / pixelmap[i].length
 		let j = Math.floor(x / ratiox)
+		if (j < 0)
+			return {row: -1, col: -1}
 
 		return {row: i, col: j}
 	}
 
 	testedges(x, y, row, col){
-		let tile = this.map[row][col]
 		if (
-				(x < 0) || (y < 0) || 
+				(x < 0) || (y < 0) || (row === -1) || (col === -1) || 
 				(x + this.imgwidth > this.pixelmap['canvaswidth']) ||
 				(y + this.imgheight > this.pixelmap['canvasheight'])
 		   )
 		{
 			console.log('bounds guard')
-			console.log('tile: '+ tile)
 			return false
 		}
 		
+		let tile = this.map[row][col]
 
 		if (tile === 'h')
 		{
@@ -184,10 +187,13 @@ class Character {
 		let sp = this.walkSpeed;
 		let newxx = this.xx
 		let newyy = this.yy
+		let buffx = 0
+		let buffy = 0
 
 		switch (this.cdir){
 			case R:
 				newxx += sp * w; // if xx < boundaries['R'] good, else xx = xx
+				buffx = this.image.width
 				break;
 			case L:
 				newxx -= sp * w;
@@ -197,12 +203,13 @@ class Character {
 				break;
 			case D:
 				newyy += sp * w;
+				buffy = this.image.height
 				break;
 		}
 		let newx = Math.floor(newxx);
 		let newy = Math.floor(newyy);
 		let idx = this.findindex(newx, newy)
-		let canpass = this.testedges(newx, newy, idx['row'], idx['col'])
+		let canpass = this.testedges(newx + buffx, newy + buffy, idx['row'], idx['col'])
 		if (canpass)
 		{
 			this.xx = newxx

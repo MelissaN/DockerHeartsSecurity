@@ -1,9 +1,37 @@
 // functions
-function findPoint(pixelmap, i, j){
+function findpoint(pixelmap, i, j){
 		// finds the index of position x, y on the pixel map
 		return {x: j * pixelmap.ratiox, y: i * pixelmap.ratioy}
 	}
 
+function drawland(pixelmap, mapkey){
+	let map = pixelmap.map
+	for(let row = 0; row < pixelmap.map.length; row++)
+		for(let col = 0; col < pixelmap.map[row].length; col++){
+			let tilepoint = findpoint(pixelmap, row, col)
+			let x = tilepoint['x']
+			let y = tilepoint['y']
+			image(mapkey['t'], x, y)
+		}
+}
+
+function drawhazards(pixelmap, mapkey){
+	let map = pixelmap.map
+	for(let row = 0; row < pixelmap.map.length; row++)
+		for(let col = 0; col < pixelmap.map[row].length; col++){
+			let tile = map[row][col]
+			if (tile !== 't' && tile !== 's'){
+				let tilepoint = findpoint(pixelmap, row, col)
+				let imgwidth = pixelmap.canvaswidth / map[row].length
+				let imgheight = pixelmap.canvasheight / map.length
+				let x = imgwidth * col
+				let y = imgheight * row
+				console.log("imgwidth: "+imgwidth+"; imgheight: "
+						+imgheight+"; x: "+x+"; y: "+y)
+				image(mapkey[tile], x, y, imgwidth, imgheight)
+			}
+		}
+}
 
 //home
 let dir = 'static/lockusprites/';
@@ -17,12 +45,12 @@ let charalien = 'alien'
 
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
-let cw = 3000
-let ch = 3000
+let cw = 300
+let ch = 300
 let m = 
 	[
 		['t', 't', 't', 't', 't'],
-		['t', 'h', 't', 't', 't'],
+		['t', 't', 't', 't', 't'],
 		['s', 'h', 't', 't', 't']
 	]
 let pixelmapdemo = {
@@ -30,7 +58,7 @@ let pixelmapdemo = {
 	canvaswidth: cw,
 	canvasheight: ch,
 	ratiox: cw / m.length,
-	ratioy: cy / m[0].length
+	ratioy: ch / m[0].length
 }
 
 function preload() {
@@ -56,10 +84,10 @@ function preload() {
 		home.directionsalt[D][i] = loadImage(dir + 'snake' + poses[D] + i + '.png')
 	}
 
-	mapkeydemo['t'] = loadImage(dir + 'grasstile.png')
-	mapkeydemo['h'] = loadImage(dir + 'treetile.png')
-	mapkeydemo['w'] = loadImage(dir + 'watertile.png')
-	mapkeydemo['s'] = loadImage(dir + 'grasstile.png')
+	mapkeydemo['t'] = loadImage(dir + 'tilegrass.png')
+	mapkeydemo['h'] = loadImage(dir + 'tiletree.png')
+	mapkeydemo['w'] = loadImage(dir + 'tilewater.png')
+	mapkeydemo['s'] = loadImage(dir + 'tilegrass.png')
 }
 
 function setup(){
@@ -80,15 +108,7 @@ function draw(){
 	let pixelmap = home.pixelmap
 	let map 	 = pixelmap.map
 
-	for (let row = 0; row < map.length; row++)
-		for (let col = 0; col < map[row].length; col++)
-		{
-			let tilepoint = findPoint(pixelmap, row, col)
-			let imgheight = pixelmap.canvasheight / map.length
-			let imgwidth = pixelmap.canvaswidth / map[row].length
-			image(mapkeydemo[map[row][col]], tilepoint['x'], tilepoint['y'], imgwidth, imgheight)
-		}
-
+	drawland(pixelmap, mapkeydemo)
 	for (let [key, value] of Object.entries(home.files)){
 		if(home.selectedfile !== undefined && home.selectedfile === value)
 			stroke(255)
@@ -107,4 +127,5 @@ function draw(){
 		home.deleteOther(player);
 		room.roomcanvas.scroll()
 	}
+	drawhazards(pixelmap, mapkeydemo)
 }
