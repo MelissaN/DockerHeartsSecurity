@@ -49,7 +49,7 @@ let cw = 300
 let ch = 300
 let m = 
 	[
-		['t', 't', 't', 't', 't'],
+		['t', 't', 't', 't', 'sp'],
 		['t', 't', 't', 't', 't'],
 		['s', 'h', 't', 't', 't']
 	]
@@ -88,6 +88,7 @@ function preload() {
 	mapkeydemo['h'] = loadImage(dir + 'tiletree.png')
 	mapkeydemo['w'] = loadImage(dir + 'tilewater.png')
 	mapkeydemo['s'] = loadImage(dir + 'tilegrass.png')
+	mapkeydemo['sp'] = loadImage(dir + 'tiletreehouse.jpg')
 }
 
 function setup(){
