@@ -88,7 +88,7 @@ function preload() {
 	mapkeydemo['h'] = loadImage(dir + 'tiletree.png')
 	mapkeydemo['w'] = loadImage(dir + 'tilewater.png')
 	mapkeydemo['s'] = loadImage(dir + 'tilegrass.png')
-	mapkeydemo['sp'] = loadImage(dir + 'tiletreehouse.jpg')
+	mapkeydemo['sp'] = loadImage(dir + 'tilepurpletree.png')
 }
 
 function setup(){
