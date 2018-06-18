@@ -53,15 +53,20 @@ class Character {
 	constructor(h) {
 		this.home = h;
 		this.pixelmap = this.home.pixelmap
+		this.map	= this.pixelmap.map
+
+		this.ratioy	= this.pixelmap.canvasheight / this.map.length
+		this.ratiox	= this.pixelmap.canvaswidth / this.map[0].length
+
 		this.gender = this.home.gender
 		this.img_mtrx = h.directions;
 		this.img_girl = h.dirgirl;
 		this.img_alien = h.diralien;
 		this.img_mtrxalt = h.directionsalt;
 		this.heart = true;
-		this.spawn = this.spawnpoint(this.pixelmap)
-		this.x = this.spawn['x'];
-		this.y = this.spawn['y'];
+		this.spawn = this.spawnpoint(this.map)
+		this.x = this.spawn['x'] * this.ratiox;
+		this.y = this.spawn['y'] * this.ratioy;
 		this.xx = 0;
 		this.yy = 0;
 		this.cdir = 3;
@@ -135,6 +140,7 @@ class Character {
 				if (map[row][col] == 's')
 					spawnpoints.push({y: row, x: col})
 
+		console.log(spawnpoints)
 		return spawnpoints[Math.floor(random(0, spawnpoints.length))]
 	}
 
@@ -167,7 +173,7 @@ class Character {
 				newyy += sp * w;
 				break;
 		}
-		let newy = Math.floor(newxx);
+		let newx = Math.floor(newxx);
 		let newy = Math.floor(newyy);
 		let idx = this.findindex(newx, newy)
 		if (this.testedges(newx, newy, idx['row'], idx['col']))
