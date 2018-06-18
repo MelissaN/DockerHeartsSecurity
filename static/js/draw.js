@@ -9,9 +9,10 @@ function drawland(pixelmap, mapkey){
 	for(let row = 0; row < pixelmap.map.length; row++)
 		for(let col = 0; col < pixelmap.map[row].length; col++){
 			let tile = map[row][col]
-			let tilepoint = findpoint(pixelmap, row, col)
-			let x = tilepoint['x']
-			let y = tilepoint['y']
+			let imgwidth = pixelmap.canvaswidth / map[row].length
+			let imgheight = pixelmap.canvasheight / map.length
+			let x = imgwidth * col
+			let y = imgheight * row
 			image(mapkey['t'], x, y)
 			if (tile === 'w')
 				image(mapkey['w'], x, y)
