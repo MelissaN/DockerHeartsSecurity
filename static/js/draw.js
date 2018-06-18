@@ -8,6 +8,15 @@ let charalien = 'alien'
 let dir = 'static/lockusprites/';
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
+let pixelmapdemo = {
+	map: [
+		['t', 't', 't', 't', 't'],
+		['t', 'h', 't', 't', 't'],
+		['s', 'h', 't', 't', 't']
+	],
+	canvaswidth: 3000,
+	canvasheight: 3000
+}
 
 function preload() {
 	for (let i = 0; i < 3; i++){
@@ -34,7 +43,10 @@ function preload() {
 }
 
 function setup(){
-	let canvas = createCanvas(3000, 3000)
+	let canvaswidth = pixelmapdemo.canvaswidth
+	let canvasheight = pixelmapdemo.canvasheight
+	home.pixelmap = pixelmapdemo
+	let canvas = createCanvas(canvaswidth, canvasheight)
 	canvas.parent('canvasdiv')
 	//uinterface.canvasdiv.appendChild(canvas)
 	background(bg)

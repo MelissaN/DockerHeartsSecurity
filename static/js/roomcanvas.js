@@ -16,6 +16,10 @@
 		scrollX = (characterX + characterWidth) - (width / 2)    // +charwidth
 		scrollY = (characterY + characterHeight) - (height / 2)  // +charheight
 
+
+	update:
+		make it's focus be the mouse when the mouse moves
+		toggle focus to character when character moves
 	*/
 
 class RoomCanvas {

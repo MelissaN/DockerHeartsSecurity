@@ -3,8 +3,10 @@ class Home {
 		this.uid 	= undefined;
 		this.username	= undefined;
 		this.alterego	= undefined;
+		this.gender		= undefined;
+		this.pixelmap	= undefined;
+
 		this.navbar 	= undefined;
-		this.gender	= undefined;
 		this.views  	= [];
 		this.others 	= {};
 		this.othersList = [];
