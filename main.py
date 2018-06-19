@@ -11,9 +11,9 @@ socketio = SocketIO(app)
 files = {}
 characters = {}
 
-@socket.io.on('connect')
+@socketio.on('connect')
 def connect():
-	emit('init', {files: files, characters: characters})
+	emit('init', {'files': files, 'characters': characters})
 
 @socketio.on('disconnect')
 def disconnect():

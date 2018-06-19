@@ -38,14 +38,13 @@ class Home {
 		return function(c_and_f){
 			let characters  = c_and_f['characters']
 			let files		= c_and_f['files']
-			for (let [key, value] of Object.entries(files)){
-				homie.files = {}
+			homie.files  = {}
+			homie.others = {}
+			for (let [key, value] of Object.entries(files))
 				homie.files[key] = value
-			}
-			for (let [key, value] of Object.entries(characters)){
-				homie.others = {}
-				homie.others[key] = value
-			}
+			
+			for (let [key, value] of Object.entries(characters))
+				homie.update(value)
 		}
 	}
 
@@ -53,7 +52,7 @@ class Home {
 			let homie = this;
 		return function(other) {
 			if (homie.others[other.uid] === undefined)
-			{
+			{	
 				if (other.uid === homie.uid)
 					homie.others[homie.uid] = homie.character
 				else
@@ -76,14 +75,10 @@ class Home {
 
 	}
 
+	// make this server side later
 	deleteOther(other)  {
 		if (other.uid !== this.uid && other.timer >= 3600 * 8)
-		{
 			this.others[other.uid] = undefined;
-			let x = this.othersList.indexOf(other.uid)
-			if (x > -1)
-				this.othersList.splice(x, 1);
-		}
 	}
 
 	drop(){

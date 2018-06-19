@@ -127,15 +127,15 @@ function draw(){
 		else stroke(0)
 		rect(value.x, value.y, 10, 15);
 	}
-	let oListCopy = home.othersList.slice();
-	for (let pid of oListCopy){
-		let player = home.others[pid];
+
+	for (let [key, value] of Object.entries(home.others)){
+		let player = value;
 		player.update();
 		player.timer += 1;
 		let img = player.image;
 		let x = player.x;
 		let y = player.y;
-		image(img, x, y);
+		image(img, x, y, 25, 40);
 		home.deleteOther(player);
 		room.roomcanvas.scroll()
 	}
