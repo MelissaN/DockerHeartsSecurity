@@ -20,7 +20,7 @@ class Room extends View {
 		this.notepad 	= new Notepad(this.character)
 		this.home.character = this.character
 		this.home.socket.on("message", this.interface.appendMessage())
-		this.home.update({uid:this.home.uid, isWalking:0, direction:3,
+		this.home.socket.emit('update',{uid:this.home.uid, isWalking:0, direction:3,
 				xx:0, yy:0, heart:this.character.heart, gender:this.character.gender});
 		this.interface.submit.addEventListener("click", this.interface.sendMessage())
 	}

@@ -25,11 +25,28 @@ class Home {
 		this.socket = io.connect('http://18.221.73.238')
 		this.socket.on("update", this.update)
 		this.socket.on("drop", this.drop())
+		this.socket.on("init", this.init())
 	}
 
 	disconnectSocket(){
 		this.socket.disconnect()
 		this.uid = undefined
+	}
+
+	init(){
+		let homie = this
+		return function(c_and_f){
+			let characters  = c_and_f['characters']
+			let files		= c_and_f['files']
+			for (let [key, value] of Object.entries(files)){
+				homie.files = {}
+				homie.files[key] = value
+			}
+			for (let [key, value] of Object.entries(characters)){
+				homie.others = {}
+				homie.others[key] = value
+			}
+		}
 	}
 
 	updateOthers(){

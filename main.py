@@ -11,6 +11,10 @@ socketio = SocketIO(app)
 files = {}
 characters = {}
 
+@socket.io.on('connect')
+def connect():
+	emit('init', {files: files, characters: characters})
+
 @socketio.on('disconnect')
 def disconnect():
 	print('a user disconnected')
