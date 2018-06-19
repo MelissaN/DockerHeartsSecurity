@@ -38,6 +38,7 @@ function drawhazards(pixelmap, mapkey){
 
 //home
 let dir = 'static/lockusprites/';
+let h='h', t='t', s='s', w='w', sp='sp'
 
 let mapkeydemo = {t: undefined, h: undefined, w: undefined}
 
@@ -51,12 +52,18 @@ let bg = 0;
 let cw = 500
 let ch = 500
 let m = 
-	[
-		['h', 'h', 'h', 'h', 'h'],
-		['h', 't', 't', 't', 'h'],
-		['h', 's', 't', 'sp', 'h'],
-		['h', 'h', 'h', 'h', 'h']
-	]
+[
+[h, h, h, h, h, h, h, h, h, h],
+[s, t, t, t, t, t, t, t, t, t],
+[h, h, h, h, h, h, h, h, t, t],
+[t, t, t, t, t, t, t, t, t, t],
+[h, h, h,t, t, h, h, h, h, h],
+[sp, t, t, t, t, t, t, t, t, t],
+[h, h, w, w, w, w, w, w, h,h],
+[t, t, t, t, t, t, t, t, t, t],
+[h, h, t, t, h, h, t, t, h, h],
+[h, h, h, h, sp, h, h, h, h, h]
+]
 let pixelmapdemo = {
 	map: m,
 	canvaswidth: cw,
