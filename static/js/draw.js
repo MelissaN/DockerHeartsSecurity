@@ -38,7 +38,6 @@ function drawhazards(pixelmap, mapkey){
 
 //home
 let dir = 'static/lockusprites/';
-let h='h', t='t', s='s', w='w', sp='sp'
 
 let mapkeydemo = {t: undefined, h: undefined, w: undefined}
 
@@ -65,11 +64,11 @@ let m =
 [h, h, h, h, sp, h, h, h, h, h]
 ]
 let pixelmapdemo = {
-	map: m,
-	canvaswidth: cw,
-	canvasheight: ch,
-	ratiox: cw / m.length,
-	ratioy: ch / m[0].length
+	map: kouki,
+	canvaswidth: koukiwidth,
+	canvasheight: koukiheight,
+	ratiox: cw / kouki.length,
+	ratioy: ch / kouki[0].length
 }
 
 function preload() {
