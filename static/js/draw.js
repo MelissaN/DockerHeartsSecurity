@@ -25,7 +25,7 @@ function drawhazards(pixelmap, mapkey){
 	for(let row = 0; row < pixelmap.map.length; row++)
 		for(let col = 0; col < pixelmap.map[row].length; col++){
 			let tile = map[row][col]
-			if (tile !== s && tile !== t){
+			if (tile !== s && tile !== t && tile !== w){
 				let imgwidth = pixelmap.canvaswidth / map[row].length
 				let imgheight = pixelmap.canvasheight / map.length
 				let x = imgwidth * col
@@ -53,7 +53,7 @@ function drawhazard(pixelmap, mapkey, row, col){
 	if (row >= map.length || col >= map[row].length)
 		return;
 	let tile = map[row][col]
-	if (tile !== s && tile !== t){
+	if (tile !== s && tile !== t && tile !== w){
 				let imgwidth = pixelmap.canvaswidth / map[row].length
 				let imgheight = pixelmap.canvasheight / map.length
 				let x = imgwidth * col
@@ -190,7 +190,7 @@ function draw(){
 		home.deleteOther(player);
 		room.roomcanvas.scroll()
 	}
-	//if (frameCount % 60 == 0){
-	//	drawhazards(pixelmap, mapkeydemo)
-	//}
+	if (frameCount % 240 == 0){
+		drawhazards(pixelmap, mapkeydemo)
+	}
 }
