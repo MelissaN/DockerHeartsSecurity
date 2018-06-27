@@ -154,7 +154,7 @@ function setup(){
 function draw(){
 	let pixelmap = home.pixelmap
 	let map 	 = pixelmap.map
-	if (frameCount % 60 == 0){
+	if (frameCount % 240 == 0){
 		background(bg); // move this
 		drawland(pixelmap, mapkeydemo) // replace this 
 	}
