@@ -64,3 +64,5 @@ let snakeriver =
 [h, h, t, t, h, h, t, t, h, h],
 [h, h, h, h, sp, h, h, h, h, h]
 ], snakeriverwidth = 500, snakeriverheight = 500;
+
+let alexellis = [[h,t,s,t,h]], alexelliswidth = 1500, alexellisheight = 500

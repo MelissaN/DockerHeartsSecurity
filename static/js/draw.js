@@ -48,8 +48,8 @@ let charalien = 'alien'
 
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
-let cw = 500
-let ch = 500
+let cw = 1000
+let ch = 1000
 let m = 
 [
 [h, h, h, h, h, h, h, h, h, h],
@@ -64,11 +64,11 @@ let m =
 [h, h, h, h, sp, h, h, h, h, h]
 ]
 let pixelmapdemo = {
-	map: kouki,
-	canvaswidth: koukiwidth,
-	canvasheight: koukiheight,
-	ratiox: cw / kouki.length,
-	ratioy: ch / kouki[0].length
+	map: m,
+	canvaswidth: cw,
+	canvasheight: ch,
+	ratiox: cw / m.length,
+	ratioy: ch / m[0].length
 }
 
 function preload() {
