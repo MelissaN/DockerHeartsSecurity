@@ -65,8 +65,10 @@ class Character {
 		this.img_girl = h.dirgirl;
 		this.img_alien = h.diralien;
 		this.img_mtrxalt = h.directionsalt;
-		this.heart = true;
 		this.spawn = this.spawnpoint(this.map)
+
+		this.heart = true;
+		this.points = 0;
 
 		this.xx = this.spawn['x'] * this.ratiox;
 		this.yy = this.spawn['y'] * this.ratioy;
@@ -133,6 +135,19 @@ class Character {
 		return {row: i, col: j}
 	}
 
+	unlocktreeclusters(){
+		let map = this.map;
+		for (let row = 0; row < map.length; row++)
+			for (let col = 0; col < map[row].length; col++){
+				if (map[row][col] === 'b')
+					map[row][col] = 't'
+				if (map[row][col] === 'bb')
+					map[row][col] = 'b'
+				if (map[row][col] === 'bbb')
+					map[row][col] = 'bb'
+			}
+	}
+
 	testedges(x, y, row, col){
 		if (
 				(x < 0) || (y < 0) || (row === -1) || (col === -1) || 
@@ -146,10 +161,16 @@ class Character {
 		
 		let tile = this.map[row][col]
 
-		if (tile === 'h' || tile === 'sp')
+		if (tile === 'h' || tile === 'sp' || tile === 'p' || tile === 'b' 
+			|| tile === 'bb' || tile === 'bbb')
 		{
 			console.log('hazard guard')
 			console.log('tile: '+tile)
+			if (tile === 'sp' && this.heart){
+				this.points += 1;
+				this.map[row][col] = 'p';
+				this.unlocktreeclusters();
+			}
 			return false
 		}
 

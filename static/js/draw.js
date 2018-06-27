@@ -38,6 +38,7 @@ function drawhazards(pixelmap, mapkey){
 
 //home
 let dir = 'static/lockusprites/';
+let h='h', t='t', s='s', w='w', sp='sp', p='p', b='b', bb='bb', bbb='bbb'
 
 let mapkeydemo = {t: undefined, h: undefined, w: undefined}
 
@@ -49,7 +50,7 @@ let charalien = 'alien'
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
 let cw = 1000
-let ch = 1000
+let ch = 2000
 let m = 
 [
 [h, h, h, h, h, h, h, h, h, h],
@@ -64,7 +65,7 @@ let m =
 [h, h, h, h, sp, h, h, h, h, h]
 ]
 let pixelmapdemo = {
-	map: m,
+	map: dungeon,
 	canvaswidth: cw,
 	canvasheight: ch,
 	ratiox: cw / m.length,
@@ -99,6 +100,10 @@ function preload() {
 	mapkeydemo['w'] = loadImage(dir + 'tilewater.png')
 	mapkeydemo['s'] = loadImage(dir + 'tilegrass.png')
 	mapkeydemo['sp'] = loadImage(dir + 'tilepurpletree.png')
+	mapkeydemo['p'] = loadImage(dir + 'tileactivetree.png')
+	mapkeydemo['b'] = loadImage(dir + 'tiledarktree.png')
+	mapkeydemo['bb'] = loadImage(dir + 'tiledarktree.png')
+	mapkeydemo['bbb'] = loadImage(dir + 'tiledarktree.png')
 }
 
 function setup(){

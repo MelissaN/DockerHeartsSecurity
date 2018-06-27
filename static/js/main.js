@@ -29,7 +29,6 @@ login.display();
 // ------------------------------------------------------------
 // maps 
 
-let h='h', t='t', s='s', w='w', sp='sp'
 
 let kouki = 
 [
@@ -66,3 +65,27 @@ let snakeriver =
 ], snakeriverwidth = 500, snakeriverheight = 500;
 
 let alexellis = [[h,t,s,t,h]], alexelliswidth = 1500, alexellisheight = 500
+
+let dungeon = 
+[
+[h, h, h, h, h, h, h, h, h, h],
+[s, t, t, t, t, t, t, t, t, t],
+[h, h, h, h, h, h, h, h, t, t],
+[t, t, t, t, t, t, t, t, t, t],
+[h, h, h, t, t, h, h, h, h, h],
+[h, t, t, t, t, t, t, t, t, t],
+[h, h, w, w, w, w, w, w, h, h],
+[t, t, t, t, t, t, t, t, t, t],
+[h, h, t, t, h, h, t, sp, h, h],
+[h, h, b, b, h, h, h, h, h, h],
+[h, h, b, b, h, h, h, h, h, h],
+[h, h, t, t, h, h, t, t, w, sp],
+[h, h, t, t, t, t, t, h, h, h],
+[h, h, t, t, h, h, h, h, h, h],
+[h, h, bb, bb, h, h, h, h, h, h],
+[h, h, w, w, h, h, h, h, h, h],
+[h, h, w, w, h, h, h, h, h, h],
+[h, sp, t, t, sp, h, h, h, h, h],
+[h, sp, t, t, sp, h, h, h, h, h],
+[h, sp, sp, sp, sp, h, h, h, h, h]
+]
