@@ -13,9 +13,9 @@ function drawland(pixelmap, mapkey){
 			let imgheight = pixelmap.canvasheight / map.length
 			let x = imgwidth * col
 			let y = imgheight * row
-			image(mapkey['t'], x, y)
+			image(mapkey['t'], x, y, imgwidth, imgheight)
 			if (tile === 'w')
-				image(mapkey['w'], x, y)
+				image(mapkey['w'], x, y, imgwidth, imgheight)
 		}
 }
 
