@@ -25,8 +25,7 @@ function drawhazards(pixelmap, mapkey){
 	for(let row = 0; row < pixelmap.map.length; row++)
 		for(let col = 0; col < pixelmap.map[row].length; col++){
 			let tile = map[row][col]
-			if (tile === 'h' || tile === 'sp'){
-				let tilepoint = findpoint(pixelmap, row, col)
+			if (tile !== s && tile !== t){
 				let imgwidth = pixelmap.canvaswidth / map[row].length
 				let imgheight = pixelmap.canvasheight / map.length
 				let x = imgwidth * col
@@ -34,6 +33,21 @@ function drawhazards(pixelmap, mapkey){
 				image(mapkey[tile], x, y, imgwidth, imgheight)
 			}
 		}
+}
+
+function drawtile(pixelmap, mapkey, row, col){
+	let map = pixelmap.map
+	let tile = map[row][col]
+	let imgwidth = pixelmap.canvaswidth / map[row].length
+	let imgheight = pixelmap.canvasheight / map.length
+	let x = imgwidth * col
+	let y = imgheight * row
+	image(mapkey['t'], x, y)
+	image(mapkey[tile], x, y)
+}
+
+function refreshtiles(){
+
 }
 
 //home
@@ -115,17 +129,22 @@ function setup(){
 	let canvas = createCanvas(canvaswidth, canvasheight)
 	canvas.parent('canvasdiv')
 	//uinterface.canvasdiv.appendChild(canvas)
+	let pixelmap = home.pixelmap
 	background(bg)
+	drawland(pixelmap, mapkeydemo)
+	drawhazards(pixelmap, mapkeydemo)
 }
 
 function draw(){
-	background(bg);
-	stroke(0);
-	fill(150);
 	let pixelmap = home.pixelmap
 	let map 	 = pixelmap.map
+	if (frameCount % 60 == 0){
+		background(bg); // move this
+		drawland(pixelmap, mapkeydemo) // replace this 
+	}
+	stroke(0);
+	fill(150);
 
-	drawland(pixelmap, mapkeydemo)
 	for (let [key, value] of Object.entries(home.files)){
 		if(home.selectedfile !== undefined && home.selectedfile === value)
 			stroke(255)
@@ -144,5 +163,7 @@ function draw(){
 		home.deleteOther(player);
 		room.roomcanvas.scroll()
 	}
-	drawhazards(pixelmap, mapkeydemo)
+	if (frameCount % 60 == 0){
+		drawhazards(pixelmap, mapkeydemo)
+	}
 }
