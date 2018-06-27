@@ -161,8 +161,6 @@ function draw(){
 		let img = player.image;
 		let x = player.x;
 		let y = player.y;
-		let idx = player.findindex(x, y)
-		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'])
 		image(img, x, y, 25, 40);
 		home.deleteOther(player);
 		room.roomcanvas.scroll()
