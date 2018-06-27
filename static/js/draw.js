@@ -162,11 +162,14 @@ function draw(){
 		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'])
 		drawtile(pixelmap, mapkeydemo, idx['row'] + 1, idx['col'])
 		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'] + 1)
+	}
+	for (let [key, value] of Object.entries(home.others)){
+		let player = value;
+		let x = player.x;
+		let y = player.y;
 		player.update();
 		player.timer += 1;
 		let img = player.image;
-		x = player.x;
-		y = player.y;
 		image(img, x, y, 25, 40);
 		home.deleteOther(player);
 		room.roomcanvas.scroll()
