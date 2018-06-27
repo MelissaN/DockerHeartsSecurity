@@ -37,7 +37,7 @@ function drawhazards(pixelmap, mapkey){
 
 function drawtile(pixelmap, mapkey, row, col){
 	let map = pixelmap.map
-	if (row >= map.length || col >= map[row].length)
+	if (row < 0 || col < 0 || row >= map.length || col >= map[row].length)
 		return;
 	let tile = map[row][col]
 	let imgwidth = pixelmap.canvaswidth / map[row].length
@@ -170,6 +170,8 @@ function draw(){
 		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'])
 		drawtile(pixelmap, mapkeydemo, idx['row'] + 1, idx['col'])
 		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'] + 1)
+		drawtile(pixelmap, mapkeydemo, idx['row'] - 1, idx['col'])
+		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'] - 1)
 	}
 
 	for (let [key, value] of Object.entries(home.files)){
