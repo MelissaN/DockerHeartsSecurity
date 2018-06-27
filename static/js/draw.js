@@ -48,6 +48,20 @@ function drawtile(pixelmap, mapkey, row, col){
 	image(mapkey[tile], x, y, imgwidth, imgheight)
 }
 
+function drawhazard(pixelmap, mapkey, row, col){
+	let map = pixelmap.map
+	if (row >= map.length || col >= map[row].length)
+		return;
+	let tile = map[row][col]
+	if (tile !== s && tile !== t){
+				let imgwidth = pixelmap.canvaswidth / map[row].length
+				let imgheight = pixelmap.canvasheight / map.length
+				let x = imgwidth * col
+				let y = imgheight * row
+				image(mapkey[tile], x, y, imgwidth, imgheight)
+			}
+}
+
 function refreshtiles(){
 
 }
@@ -147,6 +161,17 @@ function draw(){
 	stroke(0);
 	fill(150);
 
+	// cleans character tile
+	for (let [key, value] of Object.entries(home.others)){
+		let player = value;
+		let x = player.x;
+		let y = player.y;
+		let idx = player.findindex(x, y)
+		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'])
+		drawtile(pixelmap, mapkeydemo, idx['row'] + 1, idx['col'])
+		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'] + 1)
+	}
+
 	for (let [key, value] of Object.entries(home.files)){
 		if(home.selectedfile !== undefined && home.selectedfile === value)
 			stroke(255)
@@ -158,15 +183,6 @@ function draw(){
 		let player = value;
 		let x = player.x;
 		let y = player.y;
-		let idx = player.findindex(x, y)
-		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'])
-		drawtile(pixelmap, mapkeydemo, idx['row'] + 1, idx['col'])
-		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'] + 1)
-	}
-	for (let [key, value] of Object.entries(home.others)){
-		let player = value;
-		let x = player.x;
-		let y = player.y;
 		player.update();
 		player.timer += 1;
 		let img = player.image;
@@ -174,7 +190,7 @@ function draw(){
 		home.deleteOther(player);
 		room.roomcanvas.scroll()
 	}
-	if (frameCount % 60 == 0){
-		drawhazards(pixelmap, mapkeydemo)
-	}
+	//if (frameCount % 60 == 0){
+	//	drawhazards(pixelmap, mapkeydemo)
+	//}
 }
