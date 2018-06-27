@@ -37,6 +37,8 @@ function drawhazards(pixelmap, mapkey){
 
 function drawtile(pixelmap, mapkey, row, col){
 	let map = pixelmap.map
+	if (row >= map.length || col >= map[row].length)
+		return;
 	let tile = map[row][col]
 	let imgwidth = pixelmap.canvaswidth / map[row].length
 	let imgheight = pixelmap.canvasheight / map.length
@@ -158,6 +160,8 @@ function draw(){
 		let y = player.y;
 		let idx = player.findindex(x, y)
 		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'])
+		drawtile(pixelmap, mapkeydemo, idx['row'] + 1, idx['col'])
+		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'] + 1)
 		player.update();
 		player.timer += 1;
 		let img = player.image;
