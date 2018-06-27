@@ -38,7 +38,8 @@ function drawhazards(pixelmap, mapkey){
 
 //home
 let dir = 'static/lockusprites/';
-let h='h', t='t', s='s', w='w', sp='sp', p='p', b='b', bb='bb', bbb='bbb'
+//let h='h', t='t', s='s', w='w', sp='sp', p='p', b='b', bb='bb', bbb='bbb'
+// these variables defined in main
 
 let mapkeydemo = {t: undefined, h: undefined, w: undefined}
 

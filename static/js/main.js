@@ -29,6 +29,7 @@ login.display();
 // ------------------------------------------------------------
 // maps 
 
+let h='h', t='t', s='s', w='w', sp='sp', p='p', b='b', bb='bb', bbb='bbb'
 
 let kouki = 
 [
