@@ -42,8 +42,8 @@ function drawtile(pixelmap, mapkey, row, col){
 	let imgheight = pixelmap.canvasheight / map.length
 	let x = imgwidth * col
 	let y = imgheight * row
-	image(mapkey['t'], x, y)
-	image(mapkey[tile], x, y)
+	image(mapkey['t'], x, y, imgwidth, imgheight)
+	image(mapkey[tile], x, y, imgwidth, imgheight)
 }
 
 function refreshtiles(){
