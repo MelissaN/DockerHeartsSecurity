@@ -154,6 +154,8 @@ function draw(){
 
 	for (let [key, value] of Object.entries(home.others)){
 		let player = value;
+		let idx = player.findindex(x, y)
+		drawtile(pixelmap, mapkeydemo, idx['row'], idx['col'])
 		player.update();
 		player.timer += 1;
 		let img = player.image;
