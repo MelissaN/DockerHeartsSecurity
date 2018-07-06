@@ -22,7 +22,7 @@ class Home {
 	}
 
 	connectSocket(){
-		this.socket = io.connect('http://18.221.73.238')
+		this.socket = io.connect('http://18.219.17.191')
 		this.socket.on("update", this.update)
 		this.socket.on("drop", this.drop())
 		this.socket.on("init", this.init())
