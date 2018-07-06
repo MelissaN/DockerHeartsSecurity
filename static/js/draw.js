@@ -80,7 +80,7 @@ let charalien = 'alien'
 
 const poses = ['Right', 'Left', 'Back', 'Front'];
 let bg = 0;
-let cw = 1000
+let cw = 2000
 let ch = 2000
 let m = 
 [

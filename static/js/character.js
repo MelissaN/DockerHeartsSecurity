@@ -80,7 +80,7 @@ class Character {
 		this.cframe = 0;
 		this.cc = 0;
 		this.cdelay = 4;
-		this.walkSpeed = 2.4;
+		this.walkSpeed = 2.7;
 		this.isWalking = 0;
 
 	}
