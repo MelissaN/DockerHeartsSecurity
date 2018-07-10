@@ -1,0 +1,43 @@
+aren't any lectures. instead there are mentors. work is posted on a site
+
+1. no set hours, but you're expected to be there everyday. And the other girl gets there at nine. 
+  - there will be events. it reminds me of college. basically mandatory. 
+2. you log into the class intranet daily, where you find your projects
+ - can you see projects into the future?
+    - this would cause some people to work far ahead of schedule
+ - can you see the next project after completing the current one? Or is it updated daily.
+3. school slack - mentors
+4. every person is a universe
+
+algorithms
+web projects 
+
+Monday 11:30am google hangouts 
+
+================= to study ===========
+
+1. man ls
+2. bash scripting syntax and power
+3. less commands
+4. spell checker - look , aspell
+5. maipulating files - cp, mv, rm, mkdir
+
+
+----
+ls (list files and directories)
+less (view text files)
+file (classify a file's contents)
+
+===============================================
+
+I think that you should become enlightened, and then live your life.
+Enlightened 
+Educated 
+The world would be richer to you than it was before your education.
+
+
+I want to elevate my intellect.
+
+f55b3233 - logging code
+
+

@@ -1,0 +1,50 @@
+Why libraries are used:
+1. software design also known as "shared components"
+2. groups together compiled object code files into a single file known as a library.
+3. Typically C functions/C++ classes and methods which can be shared by more than one application are broken out of the application's source code, compiled and bundled into a library.
+4.  The benefit is that each and every object file need not be stated when linking because the developer can reference the library collective.
+5. This simplifies the multiple use and sharing of software components between applications.
+
+
+
+Start with the difference between a dynamic and static library
+	bullet point pros and cons of each
+		definition
+		size**
+		durability*
+		maintainability**
+	gifs on how to make and use both
+
+ficaf - making instruction addresses relative 
+	
+==================
+static library - https://gph.is/2Feb4SB
+
+ls
+clear
+gcc -c *.c
+ls
+clear
+ar -rc libdemo.a *.o
+ls
+rm *.o && clear
+===================
+dynamic library - https://gph.is/2Kao4N2
+
+ls
+clear
+gcc -c -fpic *.c
+ls
+clear
+gcc -shared *.o -o libdemo.so
+ls 
+rm *.o && clear
+
+========================
+Using them <include main.c>
+
+gcc main.c -L. libdemo.a - https://gph.is/2FdmvKF
+
+export LD_LIBRARY_PATH=<path_to_lib>:$LD_LIBRARY_PATH - https://gph.is/2Hn2zup
+gcc main.c libdemo.so -o main
+=========================
