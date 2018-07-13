@@ -1,0 +1,1 @@
+""" singleton which can be changed by any user """
