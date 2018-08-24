@@ -14,8 +14,8 @@ Players will be able to code files with scripts either with malware or not. In t
 ## Usage:
 > This project is constantly being updated, with new versions. Here are snippets of the code. Docker images/containers specific to this game are availalble at [DockerHub.](https://hub.docker.com/r/melissan/security_game/) 
 
-[![M](https://github.com/MelissaN/DockerHeartsSecurity/master/V2/screenshots/kouki700.JPG)]
-[![M](https://github.com/MelissaN/DockerHeartsSecurity/master/V2/screenshots/swimsnakes3.JPG)]
+[![Opps! You missed a screenshot of our game](https://raw.githubusercontent.com/MelissaN/DockerHeartsSecurity/master/V2/screenshots/kouki700.JPG)]
+[![Opps! You missed a screenshot of our game](https://raw.githubusercontent.com/MelissaN/DockerHeartsSecurity/master/V2/screenshots/swimsnakes3.JPG)]
 
 ---
 ### Authors
